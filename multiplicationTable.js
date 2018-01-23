@@ -1,6 +1,5 @@
  function createMultiTable(num) {
-    let multiTable = [];
-    let row = [];
+    let multiTable = [], row = [];
     //create first array
     for (let i = 0; i <= num; i++) {
        row.push(i);
