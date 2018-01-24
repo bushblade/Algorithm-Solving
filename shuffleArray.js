@@ -17,10 +17,10 @@ shuffleArray(arrayToShuffle1);
 
 function shuffle(arry) {
   arry.forEach((x, i) => {
-    var j = Math.floor(Math.random() * arry.length);
-    var temp = arry[i];
-    arry[i] = arry[j];
-    arry[j] = temp;
+    let rnd = Math.floor(Math.random() * arry.length);
+    let temp = arry[i];
+    arry[i] = arry[rnd];
+    arry[rnd] = temp;
   });
   console.log(arry);
 }
