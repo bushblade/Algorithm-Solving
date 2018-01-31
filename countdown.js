@@ -1,8 +1,16 @@
-function timer(time) {
-  let count = time;
+function timer(minutes, seconds = 0) {
+  let minuteCount = minutes;
+  let secondsCount = seconds;
+  let totalTime = minutes * 60 + seconds;
   let interval = setInterval(() => {
-    count--;
-    console.log(count);
-    count === 0 ? clearInterval(interval) : false;
+    totalTime--;
+    secondsCount--;
+    if (secondsCount === 0){
+      secondsCount = 60;
+      minuteCount --;
+    } else if(totalTime === 0){
+      clearInterval(interval);
+    }
+    console.log(`time remaining: ${minuteCount}:${secondsCount}`);
   }, 1000);
 }
