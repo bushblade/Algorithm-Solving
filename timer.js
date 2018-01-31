@@ -3,12 +3,12 @@
 setTimeout(() => {
   let counter = 0;
   let interval = setInterval(() => {
-    rinRing();
+    ringRing();
     counter++;
     counter === 5 ? clearInterval(interval) : false;
   }, 1000);
 }, 5000);
 
-function rinRing() {
+function ringRing() {
   console.log("Ring Ring!");
 }
