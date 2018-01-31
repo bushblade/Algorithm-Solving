@@ -6,10 +6,7 @@ function timer(minutes, seconds = 0) {
     console.log(`time remaining: ${minTwoDidgets(minuteCount)}:${minTwoDidgets(secondsCount)}`);
     totalTime--;
     secondsCount--;
-    if (secondsCount < 0){
-      secondsCount = 59;
-      minuteCount --;
-    }
+    secondsCount < 0 ? (secondsCount = 59 , minuteCount --) : false;
     totalTime < 0 ? clearInterval(interval) : false;
   }, 1000);
 }
