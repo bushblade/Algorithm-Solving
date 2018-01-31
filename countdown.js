@@ -3,14 +3,13 @@ function timer(minutes, seconds = 0) {
   let secondsCount = seconds;
   let totalTime = minutes * 60 + seconds;
   let interval = setInterval(() => {
+    console.log(`time remaining: ${minuteCount}:${secondsCount}`);
     totalTime--;
     secondsCount--;
-    if (secondsCount === 0){
-      secondsCount = 60;
+    if (secondsCount < 0){
+      secondsCount = 59;
       minuteCount --;
-    } else if(totalTime === 0){
-      clearInterval(interval);
     }
-    console.log(`time remaining: ${minuteCount}:${secondsCount}`);
+    totalTime < 0 ? clearInterval(interval) : false;
   }, 1000);
 }
