@@ -1,38 +1,56 @@
-//this number can be changed by user input in a form
-let input = Number(prompt('length of number to guess'));
+//set variables
+let input,
+  winningNum,
+  guess;
 
-const numberToGuess = numLength => new Array(numLength)
-  .fill(9)
-  .map(i => Math.floor(Math.random() * i) + 1);
+init();
 
-let winningNumber = numberToGuess(input);
-// console.log(winningNumber);
+function init() {
+  setInput();
+  storeGuess();
+  runChecks();
+}
 
-let guess = prompt(`guess the ${winningNumber.length} didgit number`)
-  .split('')
-  .map(x => Number(x));
+function setInput() {
+  input = Number(prompt('length of number to guess'));
+  setWinningNum(input);
+}
 
-// console.log(guess);
+function setWinningNum(x) {
+  winningNum = new Array(x)
+    .fill(9)
+    .map(i => Math.floor(Math.random() * i) + 1);
+}
+
+function storeGuess() {
+  guess = prompt(`guess the ${winningNum.length} didgit number`)
+    .split('')
+    .map(x => Number(x));
+}
 
 //show user which ones match
-const guessAgain = (arr1, arr2) => {
+function guessAgain(arr1, arr2) {
   let checked = arr1.map((x, i) => x === arr2[i] ? x = x : x = 'X');
   return checked;
 }
 
 //check the guess
-const checkGuess = (arr1, arr2) => {
+function checkGuess(arr1, arr2) {
   return arr1.filter((x, i) => x !== arr2[i]).length === 0 ? true : false;
 }
 
-const runChecks = () => {
-  if (checkGuess(winningNumber, guess)) {
-    alert(`you win the number was ${winningNumber}`);
+function runChecks() {
+  if (checkGuess(winningNum, guess)) {
+    alert(`you win the number was ${winningNum}`);
+    playAgain();
   } else {
-    guess = prompt(`you matched ${guessAgain(winningNumber, guess)}`)
+    guess = prompt(`you matched ${guessAgain(winningNum, guess)}`)
       .split('')
       .map(x => Number(x));
     runChecks();
   }
 }
-runChecks();
+
+function playAgain() {
+  confirm('Play again?') ? init() : alert('Thanks for playing!');
+}
