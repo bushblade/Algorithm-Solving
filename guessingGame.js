@@ -23,7 +23,7 @@ function setWinningNum(x) {
 }
 
 function storeGuess() {
-  guess = prompt(`guess the ${winningNum.length} didgit number`)
+  guess = prompt(`guess the ${winningNum.length} digit number`)
     .split('')
     .map(x => Number(x));
 }
