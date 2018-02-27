@@ -64,9 +64,8 @@ function letterChanges(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u']
   return str.split(' ')
     .map(word => word.split('')
-      .map(function (letter) {
+      .map(letter => {
         let indx = alphbt.indexOf(letter)
-        //check if z and increment to a
         return alphbt.indexOf(letter) === alphbt.length - 1 ? alphbt[0] : alphbt[indx += 1]
       })
       .map(ltr => vowels.includes(ltr) ? ltr.toUpperCase() : ltr)
