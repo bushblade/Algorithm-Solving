@@ -15,11 +15,11 @@ const comments = [
 // Some and Every Checks
 // Array.prototype.some() // is at least one person 19 or older?
 const thisYear = new Date().getUTCFullYear()
-const overNineteen = people.some(person => thisYear - person.year > 19)
+const overNineteen = people.some(person => thisYear - person.year >= 19)
 console.log(overNineteen)
 
 // Array.prototype.every() // is everyone 19 or older?
-const allOverNineteen = people.every(person => thisYear - person.year > 19)
+const allOverNineteen = people.every(person => thisYear - person.year >= 19)
 console.log(allOverNineteen)
 
 // Array.prototype.find()
@@ -31,5 +31,5 @@ console.log(findID)
 // Array.prototype.findIndex()
 // Find the comment with this ID
 // delete the comment with the ID of 823423
-comments.splice(comments.findIndex(comment => comment.id === 823423), 1)
+comments.splice(comments.findIndex(comment => comment.id === 823423), 1, 'post removed')
 console.log(comments)
