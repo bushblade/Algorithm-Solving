@@ -18,14 +18,23 @@ function longestWord(sen) {
 // ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 3) === [[1, 2, 3],[4, 5, 6],[7]]
 // ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 2) === [[1, 2],[3, 4],[5, 6],[7]]
 
+// function chunkArray(arr, len) {
+//   let i = 0
+//   let resArr = []
+//   while (i < arr.length) {
+//     resArr.push(arr.splice(i, len))
+//   }
+//   i += len
+//   return resArr
+// }
+
 function chunkArray(arr, len) {
-  let i = 0
-  let resArr = []
-  while (i < arr.length) {
-    resArr.push(arr.splice(i, len))
-  }
-  i += len
-  return resArr
+  return arr.reduce((a, it, i) => {
+    const ix = Math.floor(i / len)
+    !a[ix] ? a[ix] = [] : false
+    a[ix].push(it)
+    return a
+  }, [])
 }
 
 // CHALLENGE 3: FLATTEN ARRAY
@@ -60,8 +69,8 @@ function isAnagram(str1, str2) {
 // ex. 'hello there' === 'Ifmmp UIfsf'
 
 function letterChanges(str) {
-  const alphbt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-  const vowels = ['a', 'e', 'i', 'o', 'u']
+  const alphbt = [...'abcdefghijklmnopqrstuvwxyz']
+  const vowels = [...'aeiou']
   return str.split(' ')
     .map(word => word.split('')
       .map(letter => {
