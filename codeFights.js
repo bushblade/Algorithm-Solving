@@ -188,12 +188,13 @@ function palindromeRearranging(inputString) {
   for (v in check){
     check[v] % 2 !== 0 ? count++ : false
   }
-  if(count > 1){
-    return false
-  } else if(count === 1 && inputString % 2 !== 0){
-    return true
-  } else {
-    return true
-  }
+  return count > 1 ? false : true
 }
 console.log(palindromeRearranging("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"))
+
+//####################### Island of Knowledge ###############################
+
+function areEquallyStrong(yl, yr, fl, fr) {
+return yl + yr === fl + fr ? true : false
+}
+console.log(areEquallyStrong(10,15,15,10))
