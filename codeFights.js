@@ -186,7 +186,7 @@ function palindromeRearranging(inputString) {
   }, {})
   let count = 0
   for (v in check){
-    check[v] % 2 === 0 ? delete check[v] : count++
+    check[v] % 2 !== 0 ? count++ : false
   }
   if(count > 1){
     return false
