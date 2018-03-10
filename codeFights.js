@@ -2,13 +2,13 @@
 
 function add(param1, param2) {
   return param1 += param2
-  }
-console.log(add(1,2))  
+}
+console.log(add(1, 2))
 
 function centuryFromYear(year) {
-  return Math.ceil(year/100)
- }
- console.log(centuryFromYear(1905))
+  return Math.ceil(year / 100)
+}
+console.log(centuryFromYear(1905))
 
 function checkPalindrome(inputString) {
   return inputString.toLowerCase() === inputString.toLowerCase().split('').reverse().join('')
@@ -19,20 +19,20 @@ console.log(checkPalindrome("aabaa"))
 
 function adjacentElementsProduct(inputArray) {
   return inputArray.reduce((sum, x, i) => {
-    x * inputArray[i+1] > sum ? sum = x * inputArray[i+1] : false
+    x * inputArray[i + 1] > sum ? sum = x * inputArray[i + 1] : false
     return sum
   }, Number.NEGATIVE_INFINITY)
 }
 console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]))
 
-const shapeArea = n =>  n * (n-1) * 2 + 1
+const shapeArea = n => n * (n - 1) * 2 + 1
 
 console.log(shapeArea(5))
 
 function makeArrayConsecutive2(statues) {
-  let sorted = statues.sort((a,b) => a - b)
+  let sorted = statues.sort((a, b) => a - b)
   let result = []
-  for (let i = sorted[0] ; i < sorted[sorted.length - 1] ; i++){
+  for (let i = sorted[0]; i < sorted[sorted.length - 1]; i++) {
     !sorted.includes(i) ? result.push(i) : false
   }
   return result.length
@@ -43,7 +43,7 @@ function almostIncreasingSequence(sequence) {
   let count = 0
   sequence.forEach((x, i) => {
     x <= sequence[i - 1] ? count++ : false
-    x <= sequence[i - 2] && sequence[i+1] <= sequence[i - 1] ? count += 2 : false
+    x <= sequence[i - 2] && sequence[i + 1] <= sequence[i - 1] ? count += 2 : false
   })
   return count <= 1
 }
@@ -136,7 +136,7 @@ console.log(reverseParentheses("abc(cba)ab(bac)c"))
 console.log(reverseParentheses("The ((quick (brown) (fox) jumps over the lazy) dog)"))
 
 
-//############ Exploring the Waters ##################################################
+//############ Exploring the Waters ###############################################################################
 
 function alternatingSums(a) {
   return a.reduce((w, x, i) => {
@@ -147,7 +147,6 @@ function alternatingSums(a) {
 
 console.log(alternatingSums([50, 60, 60, 45, 70]))
 
-console.log(0 % 2)
 
 function addBorder(picture) {
   picture = picture.map(x => x = `*${x}*`)
@@ -166,3 +165,35 @@ function areSimilar(a, b) {
 }
 
 console.log(areSimilar([1, 2, 3], [1, 2, 3]))
+
+function arrayChange(inputArray) {
+  let count = 0
+  for (let i = 1; i < inputArray.length; i++) {
+    if (inputArray[i] <= inputArray[i - 1]) {
+      inputArray[i] = inputArray[i] += 1
+      count++
+      i = i - 1
+    }
+  }
+  return count
+}
+console.log(arrayChange([2, 1, 10, 1]))
+
+function palindromeRearranging(inputString) {
+  let check = inputString.split('').reduce((o, x) => {
+    o[x] ? o[x]++ : o[x] = 1
+    return o
+  }, {})
+  let count = 0
+  for (v in check){
+    check[v] % 2 === 0 ? delete check[v] : count++
+  }
+  if(count > 1){
+    return false
+  } else if(count === 1 && inputString % 2 !== 0){
+    return true
+  } else {
+    return true
+  }
+}
+console.log(palindromeRearranging("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"))
