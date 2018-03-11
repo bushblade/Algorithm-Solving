@@ -59,3 +59,8 @@ function phoneCall(min1, min2_10, min11, s) {
 console.log(phoneCall(10, 1, 2, 22))
 
 //############ At the crossroads ###############################
+
+function reachNextLevel(experience, threshold, reward) {
+  return experience + reward >= threshold
+}
+console.log(reachNextLevel(10, 15, 5))
