@@ -195,6 +195,36 @@ console.log(palindromeRearranging("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"))
 //####################### Island of Knowledge ###############################
 
 function areEquallyStrong(yl, yr, fl, fr) {
-  return [yl,yr].filter((x) => [fl,fr].includes(x)).length === 2
+  return [yl, yr].filter((x) => [fl, fr].includes(x)).length === 2
 }
 console.log(areEquallyStrong(5, 5, 10, 10))
+
+function arrayMaximalAdjacentDifference(inputArray) {
+  return inputArray.reduce((a, x, i, arr) => {
+    let prev = Math.abs(x - arr[i - 1])
+    let next = Math.abs(x - arr[i + 1])
+    let b = prev > next ? prev : next
+    b > a ? a = b : false
+    return a
+  }, 0)
+}
+console.log(arrayMaximalAdjacentDifference([2, 4, 1, 0]))
+
+function isIPv4Address(inputString) {
+  return inputString.split('.').length === 4 ?
+    inputString.split('.').filter(x => x !== '' && x >= 0 && x <= 255).length === 4 :
+    false
+}
+console.log(isIPv4Address("0..1.0.0"))
+
+// function avoidObstacles(inputArray) {
+//   console.log(inputArray.sort())
+//   return Array(Math.max(...inputArray) + 2)
+//     .fill(0)
+//     .map((x, i) => i)
+//     .reduce((a, x, i) => {
+
+//     }, 0)
+
+// }
+// console.log(avoidObstacles([5, 3, 6, 7, 9]))
