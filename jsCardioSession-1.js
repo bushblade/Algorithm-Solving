@@ -13,9 +13,9 @@ function reverseString(str) {
 // ex. isPalindrome('racecar') === 'true', isPalindrome('hello') == false
 
 function isPalindrome(str) {
-  let reverse = str.split('').reverse().join('')
-  return reverse === str
+  return str.split('').reverse().join('') === str
 }
+console.log(isPalindrome('abba'))
 
 
 
@@ -24,8 +24,9 @@ function isPalindrome(str) {
 // ex. reverseInt(521) === 125
 
 function reverseInt(int) {
-  return Number(int.toString().split('').reverse().join(''))
+  return Number([...`${int}`].reverse().join(''))
 }
+console.log(reverseInt(476))
 
 
 
