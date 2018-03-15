@@ -151,11 +151,11 @@ function search(obj, search) {
   let output = []
   for (key in obj) {
     let primary 
-    let result = obj[key].filter(x => x.text.toLowerCase().includes(search))
-    if (result.length > 0){
+    let searchResult = obj[key].filter(x => x.text.toLowerCase().includes(search))
+    if (searchResult.length > 0){
       primary = Object.create(primaryObj)
       primary.title = key
-      primary.results = result.reduce((a, x) => {
+      primary.results = searchResult.reduce((a, x) => {
         let resObj = Object.create(resultObj)
         resObj.title = x.text
         resObj.subMenus = x.submenu.reduce((c,b) => {
