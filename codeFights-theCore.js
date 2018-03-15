@@ -66,6 +66,6 @@ function reachNextLevel(experience, threshold, reward) {
 console.log(reachNextLevel(10, 15, 5))
 
 function knapsackLight(value1, weight1, value2, weight2, maxW) {
-
+  
 }
 console.log(knapsackLight(10, 5, 6, 4, 8))
