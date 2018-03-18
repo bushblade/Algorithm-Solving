@@ -14,7 +14,7 @@ console.log(duplicateEncode('Success'))
 
 //Bob is preparing to pass IQ test. The most frequent task in this test is to find out
 //which one of the given numbers differs from the others. Bob observed that one number usually
-//differs from the others in evenness. Help Bob — to check his answers, he needs a program that 
+//differs from the others in evenness. Help Bob — to check his answers, he needs a program that
 //among the given numbers finds one that is different in evenness, and return a position of this number.
 
 function iqTest(numbers) {
@@ -35,7 +35,7 @@ function SeriesSum(n) {
 
 console.log(SeriesSum(5))
 
-// Find the divisors! 
+// Find the divisors!
 function divisors(integer) {
   let r = Array(integer).fill(0).map((x, i) => i).filter(x => integer % x === 0 && x > 1)
   return r.length > 0 ? r : `${integer} is prime`
@@ -123,16 +123,66 @@ const MORSE_CODE = {
 }
 decodeMorse = function (morseCode) {
   return morseCode.split(' ')
-  .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ' )
-  .join('')
-  .split(' ')
-  .filter(x => x)
-  .join(' ')
+    .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ')
+    .join('')
+    .split(' ')
+    .filter(x => x)
+    .join(' ')
 }
 console.log(decodeMorse('.... . -.--   .--- ..- -.. .'))
 
 //disemvowel trolls
 function disemvowel(str) {
-  return str.replace(/[aeiou]/ig,'')
+  return str.replace(/[aeiou]/ig, '')
 }
 console.log(disemvowel("This website is for losers LOL!"))
+
+//format string of names seperated by commas, last two should seperated by &
+function list(names) {
+  return names.reduce((s, x, i) => {
+    i < names.length - 2 ? s += `${x.name}, ` : i === names.length - 2 ? s += `${x.name} & ` : s += `${x.name}`
+    return s
+  }, '')
+}
+console.log(list([{
+  name: 'Bart'
+}, {
+  name: 'Lisa'
+}, {
+  name: 'Maggie'
+}]))
+
+//Dubstep
+function songDecoder(song) {
+  return song.split('WUB').filter(x => x !== '').join(' ')
+}
+console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"))
+
+//Find All Array Values That Fall Within a Given Difference
+class GroupByDifference {
+  constructor(arr) {
+    this.arr = arr
+  }
+  find(n) {
+    return this.arr.sort((a, b) => a - b)
+      .reduce((a, x, i, oar) => {
+        x + n >= oar[i + 1] || x - n <= oar[i - 1] ? a.push(x) : false
+        return a
+      }, [])
+  }
+}
+console.log(new GroupByDifference([5, 32, 5, 1, 31, 70, 30, 8]).find(3))
+
+//split strings
+function solution(str) {
+  str.length % 2 !== 0 ? str = `${str}_` : false
+  let arr = [...str],
+    resArr = []
+  while (arr.length > 0) {
+    resArr.push(arr.splice(0, 2))
+  }
+  return resArr.map(x => x.join(''))
+}
+console.log(solution('abcdef'))
+
+//testing from chromebook added this line
