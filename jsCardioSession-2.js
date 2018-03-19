@@ -18,13 +18,24 @@ function longestWord(sen) {
 // ex. chunkArray(C) === [[1, 2, 3],[4, 5, 6],[7]]
 // ex. chunkArray([1, 2, 3, 4, 5, 6, 7], 2) === [[1, 2],[3, 4],[5, 6],[7]]
 
-function chunkArray(arr, len) {
-  let resArr = []
-  while (arr.length > 0) {
-    resArr.push(arr.splice(0, len))
-  }
-  return resArr
+// function chunkArray(arr, len) {
+//   let resArr = []
+//   while (arr.length > 0) {
+//     resArr.push(arr.splice(0, len))
+//   }
+//   return resArr
+// }
+
+function chunkArray(arr, n) {
+  const a = [],
+    chunk = () => {
+      a.push(arr.splice(0, n))
+      arr.length > 0 ? chunk() : false
+    }
+  chunk()
+  return a
 }
+
 
 console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 2))
 
@@ -71,7 +82,8 @@ function isAnagram(str1, str2) {
   const lowerAbc = str => str.toLowerCase().replace(/[^a-z]/g, '').split('')
   if (lowerAbc(str1).length === lowerAbc(str2).length) {
     return lowerAbc(str1).every(x => lowerAbc(str2).includes(x))
-  } else {
+  }
+  else {
     return false
   }
 }
