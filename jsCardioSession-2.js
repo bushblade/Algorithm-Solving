@@ -36,17 +36,7 @@ function chunkArray(arr, n) {
   return a
 }
 
-
 console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 2))
-
-// function chunkArray(arr, len) {
-//   return arr.reduce((a, it, i) => {
-//     const ix = Math.floor(i / len)
-//     !a[ix] ? a[ix] = [] : false
-//     a[ix].push(it)
-//     return a
-//   }, [])
-// }
 
 // CHALLENGE 3: FLATTEN ARRAY
 // Take an array of arrays and flatten to a single array
@@ -60,10 +50,7 @@ console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 2))
 // }
 
 function flattenArray(arrays) {
-  return arrays.reduce((a, x) => {
-    a = a.concat(x)
-    return a
-  }, [])
+  return arrays.reduce((a, x) => a.concat(x), [])
 }
 
 console.log(flattenArray([
