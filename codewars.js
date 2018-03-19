@@ -183,7 +183,10 @@ function encrypt(text, n) {
   let arrs = text.split('').reduce((a, x, i) => {
     i > 0 && i % 2 !== 0 ? a[0].push(x) : a[1].push(x)
     return a
-  }, [[],[]])
+  }, [
+    [],
+    []
+  ])
   let t = arrs[0].concat(arrs[1]).join('')
   return encrypt(t, n - 1)
 }
@@ -194,14 +197,62 @@ function decrypt(encryptedText, n) {
   let arrs = encryptedText.split('').reduce((a, x, i) => {
     i >= Math.floor(encryptedText.length / 2) ? a[0].push(x) : a[1].push(x)
     return a
-  },[[],[]])
+  }, [
+    [],
+    []
+  ])
   let result = arrs[0].reduce((b, e, c) => {
     b += e
     arrs[1][c] ? b += arrs[1][c] : false
     return b
   }, '')
-  return decrypt(result ,n - 1)
+  return decrypt(result, n - 1)
 }
 
-console.log(encrypt('This is a test!', 1))
-console.log(decrypt("hsi  etTi sats!", 1))
+// console.log(encrypt('This is a test!', 2))
+
+//calculating with functions
+const zero = a => a ? eval(`0${a}`) : '0',
+  one = a => a ? eval(`1${a}`) : '1',
+  two = a => a ? eval(`2${a}`) : '2',
+  three = a => a ? eval(`3${a}`) : '3',
+  four = a => a ? eval(`4${a}`) : '4',
+  five = a => a ? eval(`5${a}`) : '5',
+  six = a => a ? eval(`6${a}`) : '6',
+  seven = a => a ? eval(`7${a}`) : '7',
+  eight = a => a ? eval(`8${a}`) : '8',
+  nine = a => a ? eval(`9${a}`) : '9',
+  plus = a => a ? `+${a}` : '+',
+  minus = a => a ? `-${a}` : '-',
+  times = a => a ? `*${a}` : '*',
+  dividedBy = a => a ? `/${a}` : '/'
+
+// console.log(seven(times(five())))
+
+// Stop gninnipS My sdroW!
+function spinWords(str) {
+  return str.split(' ')
+    .map(x => x.length >= 5 ? [...x].reverse().join('') : x)
+    .join(' ')
+}
+// console.log(spinWords("Hey fellow warriors"))
+
+//validate credit card
+function validate(n) {
+  return [...String(n)]
+    .map(b => Number(b))
+    .reverse()
+    .map((x, i) => i > 0 && i % 2 !== 0
+    ? x * 2 > 9 ? x * 2 - 9 : x * 2
+    : x)
+    .reduce((a,e) => a + e, 0) % 10 === 0
+}
+// console.log(validate(2121))
+
+//kebabize
+function kebabize(str) {
+  return str.split().map(x => x.replace(/[A-Z]/), `-${x}`))
+  .join('')
+  .toLowerCase()
+}
+console.log(kebabize('camelsHaveThreeHumps'))
