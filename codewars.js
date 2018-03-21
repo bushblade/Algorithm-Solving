@@ -242,17 +242,41 @@ function validate(n) {
   return [...String(n)]
     .map(b => Number(b))
     .reverse()
-    .map((x, i) => i > 0 && i % 2 !== 0
-    ? x * 2 > 9 ? x * 2 - 9 : x * 2
-    : x)
-    .reduce((a,e) => a + e, 0) % 10 === 0
+    .map((x, i) => i > 0 && i % 2 !== 0 ?
+      x * 2 > 9 ? x * 2 - 9 : x * 2 :
+      x)
+    .reduce((a, e) => a + e, 0) % 10 === 0
 }
 // console.log(validate(2121))
 
 //kebabize
 function kebabize(str) {
-  return str.split().map(x => x.replace(/[A-Z]/), `-${x}`))
-  .join('')
-  .toLowerCase()
+  return [...str].filter(x => x.match(/[a-z]/i))
+    .map((x, i) => i > 0 ? x.replace(/[A-Z]/, `-${x}`) : x)
+    .join('').toLowerCase()
 }
-console.log(kebabize('camelsHaveThreeHumps'))
+// console.log(kebabize('camelsHaveThreeHumps'))
+
+//Especially Joyful Numbers
+function numberJoy(n) {
+  let n1 = [...String(n)].reduce((s, x) => s + Number(x), 0)
+  return n1 * Number([...String(n1)].reverse().join('')) === n
+}
+// console.log(numberJoy(1729))
+
+//IP Validation
+const isValidIP = str => str.split('.').filter(x => !x.match(/\s/) && x >= 0 && x <= 255).length === 4
+
+// console.log(isValidIP('1.2.3.4'))
+
+// Exclamation marks series #3: Remove all exclamation marks from sentence except at the end
+const remove = s => {
+  let check = true,
+      exc = [...s].reverse().reduce((str, x) => {
+      if (check) x === '!' ? str += x : check = false
+      return str
+    }, '')
+  return [...s].filter(x => x !== '!').concat(exc).join('')
+}
+
+console.log(remove("Hi!! Hi!!!"))
