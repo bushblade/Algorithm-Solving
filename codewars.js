@@ -1,11 +1,11 @@
 //Duplicate encoder
 
 function duplicateEncode(word) {
-  let obj = [...word.toLowerCase()].reduce((o, x) => {
-    o[x] ? o[x]++ : o[x] = 1
-    return o
-  }, {})
-  return [...word.toLowerCase()].map(x => obj[x] > 1 ? ')' : '(').join('')
+   let obj = [...word.toLowerCase()].reduce((o, x) => {
+      o[x] ? o[x]++ : o[x] = 1
+      return o
+   }, {})
+   return [...word.toLowerCase()].map(x => obj[x] > 1 ? ')' : '(').join('')
 }
 
 // console.log(duplicateEncode('din'))
@@ -18,10 +18,10 @@ function duplicateEncode(word) {
 //among the given numbers finds one that is different in evenness, and return a position of this number.
 
 function iqTest(numbers) {
-  let arr = numbers.split(' '),
-    even = arr.filter(x => x % 2 === 0),
-    odd = arr.filter(x => x % 2 !== 0)
-  return even.length > odd.length ? arr.indexOf(odd[0]) + 1 : arr.indexOf(even[0]) + 1
+   let arr = numbers.split(' '),
+      even = arr.filter(x => x % 2 === 0),
+      odd = arr.filter(x => x % 2 !== 0)
+   return even.length > odd.length ? arr.indexOf(odd[0]) + 1 : arr.indexOf(even[0]) + 1
 }
 
 // console.log(iqTest("2 4 7 8 10"))
@@ -30,102 +30,123 @@ function iqTest(numbers) {
 // Your task is to write a function which returns the sum of following series upto nth term(parameter).
 
 function SeriesSum(n) {
-  return Array(n).fill(1).map((x, i) => 3 * i + 1).reduce((a, b) => a += 1 / b, 0).toFixed(2)
+   return Array(n).fill(1).map((x, i) => 3 * i + 1).reduce((a, b) => a += 1 / b, 0).toFixed(2)
 }
 
 // console.log(SeriesSum(5))
 
 // Find the divisors!
 function divisors(integer) {
-  let r = Array(integer).fill(0).map((x, i) => i).filter(x => integer % x === 0 && x > 1)
-  return r.length > 0 ? r : `${integer} is prime`
+   let r = Array(integer).fill(0).map((x, i) => i).filter(x => integer % x === 0 && x > 1)
+   return r.length > 0 ? r : `${integer} is prime`
 }
 // console.log(divisors(12))
 
 
 //Binary addition
 function addBinary(a, b) {
-  return (a + b).toString(2)
+   return (a + b).toString(2)
 }
 // console.log(addBinary(3, 4))
 
 //catergarize new member
 //senior 55 or over and hadicap greater than 7
 function openOrSenior(data) {
-  return data.map(x => x[0] >= 55 && x[1] > 7 ? 'Senior' : 'Open')
+   return data.map(x => x[0] >= 55 && x[1] > 7 ? 'Senior' : 'Open')
 }
+<<<<<<< HEAD
 // console.log(openOrSenior([[18, 20], [45, 2], [61, 12], [37, 6], [21, 21], [78, 9]]))
+=======
+console.log(openOrSenior([
+   [18, 20],
+   [45, 2],
+   [61, 12],
+   [37, 6],
+   [21, 21],
+   [78, 9]
+]))
+>>>>>>> 99380932a42f37562f40101ae72ecc8d61c7ffda
 
 //decode the mores code
 const MORSE_CODE = {
-  '-.-.--': '!',
-  '.-..-.': '"',
-  '...-..-': '$',
-  '.-...': '&',
-  '.----.': '\'',
-  '-.--.': '(',
-  '-.--.-': ')',
-  '.-.-.': '+',
-  '--..--': ',',
-  '-....-': '-',
-  '.-.-.-': '.',
-  '-..-.': '/',
-  '-----': '0',
-  '.----': '1',
-  '..---': '2',
-  '...--': '3',
-  '....-': '4',
-  '.....': '5',
-  '-....': '6',
-  '--...': '7',
-  '---..': '8',
-  '----.': '9',
-  '---...': ':',
-  '-.-.-.': ';',
-  '-...-': '=',
-  '..--..': '?',
-  '.--.-.': '@',
-  '.-': 'A',
-  '-...': 'B',
-  '-.-.': 'C',
-  '-..': 'D',
-  '.': 'E',
-  '..-.': 'F',
-  '--.': 'G',
-  '....': 'H',
-  '..': 'I',
-  '.---': 'J',
-  '-.-': 'K',
-  '.-..': 'L',
-  '--': 'M',
-  '-.': 'N',
-  '---': 'O',
-  '.--.': 'P',
-  '--.-': 'Q',
-  '.-.': 'R',
-  '...': 'S',
-  '-': 'T',
-  '..-': 'U',
-  '...-': 'V',
-  '.--': 'W',
-  '-..-': 'X',
-  '-.--': 'Y',
-  '--..': 'Z',
-  '..--.-': '_',
-  '...---...': 'SOS'
+   '-.-.--': '!',
+   '.-..-.': '"',
+   '...-..-': '$',
+   '.-...': '&',
+   '.----.': '\'',
+   '-.--.': '(',
+   '-.--.-': ')',
+   '.-.-.': '+',
+   '--..--': ',',
+   '-....-': '-',
+   '.-.-.-': '.',
+   '-..-.': '/',
+   '-----': '0',
+   '.----': '1',
+   '..---': '2',
+   '...--': '3',
+   '....-': '4',
+   '.....': '5',
+   '-....': '6',
+   '--...': '7',
+   '---..': '8',
+   '----.': '9',
+   '---...': ':',
+   '-.-.-.': ';',
+   '-...-': '=',
+   '..--..': '?',
+   '.--.-.': '@',
+   '.-': 'A',
+   '-...': 'B',
+   '-.-.': 'C',
+   '-..': 'D',
+   '.': 'E',
+   '..-.': 'F',
+   '--.': 'G',
+   '....': 'H',
+   '..': 'I',
+   '.---': 'J',
+   '-.-': 'K',
+   '.-..': 'L',
+   '--': 'M',
+   '-.': 'N',
+   '---': 'O',
+   '.--.': 'P',
+   '--.-': 'Q',
+   '.-.': 'R',
+   '...': 'S',
+   '-': 'T',
+   '..-': 'U',
+   '...-': 'V',
+   '.--': 'W',
+   '-..-': 'X',
+   '-.--': 'Y',
+   '--..': 'Z',
+   '..--.-': '_',
+   '...---...': 'SOS'
 }
 decodeMorse = function(morseCode) {
+<<<<<<< HEAD
   return morseCode.split(' ')
     .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ')
     .join('')
     .split(' ')
     .filter(x => x)
     .join(' ')
+=======
+   return morseCode.split(' ')
+      .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ')
+      .join('')
+      .split(' ')
+      .filter(x => x)
+      .join(' ')
+>>>>>>> 99380932a42f37562f40101ae72ecc8d61c7ffda
 }
 // console.log(decodeMorse('.... . -.--   .--- ..- -.. .'))
 
 //disemvowel trolls
 function disemvowel(str) {
+<<<<<<< HEAD
   return str.replace(/[aeiou]/ig, '')
 }
 // console.log(disemvowel("This website is for losers LOL!"))
@@ -309,3 +330,58 @@ const maxSequence = function(arr) {
 console.log(maxSequence(failed))
 
 
+=======
+   return str.replace(/[aeiou]/ig, '')
+}
+console.log(disemvowel("This website is for losers LOL!"))
+
+//format string of names seperated by commas, last two should seperated by &
+function list(names) {
+   return names.reduce((s, x, i) => {
+      i < names.length - 2 ? s += `${x.name}, ` : i === names.length - 2 ? s += `${x.name} & ` : s += `${x.name}`
+      return s
+   }, '')
+}
+console.log(list([{
+   name: 'Bart'
+}, {
+   name: 'Lisa'
+}, {
+   name: 'Maggie'
+}]))
+
+//Dubstep
+function songDecoder(song) {
+   return song.split('WUB').filter(x => x !== '').join(' ')
+}
+console.log(songDecoder("WUBWEWUBAREWUBWUBTHEWUBCHAMPIONSWUBMYWUBFRIENDWUB"))
+
+//Find All Array Values That Fall Within a Given Difference
+class GroupByDifference {
+   constructor(arr) {
+      this.arr = arr
+   }
+   find(n) {
+      return this.arr.sort((a, b) => a - b)
+         .reduce((a, x, i, oar) => {
+            x + n >= oar[i + 1] || x - n <= oar[i - 1] ? a.push(x) : false
+            return a
+         }, [])
+   }
+}
+console.log(new GroupByDifference([5, 32, 5, 1, 31, 70, 30, 8]).find(3))
+
+//split strings
+function solution(str) {
+   str.length % 2 !== 0 ? str = `${str}_` : false
+   let arr = [...str],
+      resArr = []
+   while (arr.length > 0) {
+      resArr.push(arr.splice(0, 2))
+   }
+   return resArr.map(x => x.join(''))
+}
+console.log(solution('abcdef'))
+
+//testing from chromebook added this line
+>>>>>>> 99380932a42f37562f40101ae72ecc8d61c7ffda
