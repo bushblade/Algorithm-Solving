@@ -26,11 +26,11 @@ function longestWord(sen) {
 //   return resArr
 // }
 
-function chunkArray(arr, n) {
+const chunkArray = (arr, n) => {
   const a = [],
     chunk = () => {
       a.push(arr.splice(0, n))
-      arr.length > 0 ? chunk() : false
+      if(arr.length > 0) chunk()
     }
   chunk()
   return a
