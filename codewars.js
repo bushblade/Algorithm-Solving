@@ -281,31 +281,27 @@ const remove = s => {
 
 // console.log(remove("Hi!! Hi!!!"))
 
+//Sleigh Authentication
+function Sleigh() {}
 
-const failed = [48, 11, -15, 13, 35, 48, -15, -32, -9, 46, 30, -26, -9, -1, 11, -1, -38, -48, 8, -36, 11, 24, 46, 13, -45, 47, -48, 30, -38, 15, 21, -7, -27, -5, 28, 34, 23, -45, -1, -25, -26, 7, -19, 27, 26, -25, -42, 6, 31, 27, -40, -30, -36]
-
-// Maximum subarray sum
-const maxSequence = function(arr) {
-  let sum = arr.reduce((s, x) => s + x, 0),
-    result = arr
-  const chop = ([head, ...tail]) => {
-    console.log(tail)
-    next = tail
-    let check = tail.reduce((sum, e) => sum += e, 0)
-    if (check > sum) {
-      result = tail
-      sum = check
-      tail.length > 0 ? chop(tail) : false
-    }
-    else {
-      tail.length > 0 ? chop(tail) : false
-    }
-  }
-  chop(arr)
-  chop(result.reverse())
-  console.log(result.reverse())
-  return result.reduce((a, b) => a += b, 0)
+Sleigh.prototype.authenticate = function(name, password) {
+  return name === 'Santa Claus' && password === "Ho Ho Ho!" ? true : false
 }
-console.log(maxSequence(failed))
 
-
+//sum of intervals
+const sumIntervals = intervals => {
+  const inc = (s, e) => {
+      s = s += 1
+      numbers.add(s)
+      s < e ? inc(s, e) : false
+    },
+    numbers = new Set()
+  intervals.forEach(x => inc(x[0], x[1]))
+  return Array.from(numbers).length
+}
+// console.log(sumIntervals(
+//   [
+//     [11, 15],
+//     [6, 10],
+//     [1, 2]
+//   ]))
