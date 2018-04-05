@@ -114,7 +114,7 @@ const MORSE_CODE = {
   '..--.-': '_',
   '...---...': 'SOS'
 }
-decodeMorse = function(morseCode) {
+decodeMorse = function (morseCode) {
   return morseCode.split(' ')
     .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ')
     .join('')
@@ -156,8 +156,7 @@ function sortArray(array) {
     if (x % 2 !== 0) {
       count++
       return odd[count]
-    }
-    else {
+    } else {
       return x
     }
   })
@@ -165,7 +164,7 @@ function sortArray(array) {
 // console.log(sortArray([5, 3, 2, 8, 1, 4]))
 
 //bit counting
-var countBits = function(n) {
+var countBits = function (n) {
   return n.toString(2).replace(/0/g, '').length
 }
 // console.log(countBits(1234))
@@ -284,7 +283,7 @@ const remove = s => {
 //Sleigh Authentication
 function Sleigh() {}
 
-Sleigh.prototype.authenticate = function(name, password) {
+Sleigh.prototype.authenticate = function (name, password) {
   return name === 'Santa Claus' && password === "Ho Ho Ho!" ? true : false
 }
 
@@ -305,3 +304,57 @@ const sumIntervals = intervals => {
 //     [6, 10],
 //     [1, 2]
 //   ]))
+
+const number = busStops => busStops.reduce((n, x) => n + (x[0] - x[1]), 0)
+
+//Anagram detection
+const isAnagram = (t, o) => [...t.toLowerCase()].sort().join('') === [...o.toLowerCase()].sort().join('')
+
+// console.log(isAnagram("foefet", "toffee"))
+
+class FileNameExtractor {
+  static extractFileName(dirtyFileName) {
+    return dirtyFileName.slice(0, dirtyFileName.lastIndexOf('.')).replace(/^\d+_/, '')
+  }
+}
+// console.log(FileNameExtractor.extractFileName('1_This_is_an_otherExample.mpg.OTHEREXTENSIONadasdassdassds34'))
+
+//find unique number
+function findUniqArr(arr) {
+  let obj = arr.reduce((ob, x) => {
+    ob[x] ? ob[x]++ : ob[x] = 1
+    return ob
+  }, {})
+  return Number(Object.keys(obj).find(x => obj[x] === 1 ? x : false))
+}
+// console.log(findUniq([1, 1, 1, 2, 1, 1]))
+
+//find the unique string
+function findUniq(arr) {
+  let stage3 = arr.map(x => x.toLowerCase())
+    .map(x => {
+      let s = new Set()
+      x.split('').sort().forEach(l => s.add(l))
+      return Array.from(s).join('')
+    })
+  let obj = stage3.reduce((ob, x, i) => {
+    ob[x] ? ob[x]++ : ob[x] = 1
+    return ob
+  }, {})
+  return arr[stage3.indexOf(Object.keys(obj).find(x => obj[x] === 1 ? x : false))]
+}
+// console.log(findUniq(['Aa', 'aaa', 'aaaaa', 'BbBb', 'Aaaa', 'AaAaAa', 'a']))
+// console.log(findUniq([ 'abc', 'acb', 'bac', 'foo', 'bca', 'cab', 'cba' ]))
+
+const testStr = 'testingggggg'
+
+let res = Array.from(new Set([...testStr])).sort().join('')
+
+// console.log(res)
+
+//Are the numbers in order
+const inAscOrder = arr => arr.slice(0).sort((a, b) => a - b).every((x, i) => x === arr[i])
+
+// console.log(inAscOrder([1, 2, 4, 7, 19]))
+
+
