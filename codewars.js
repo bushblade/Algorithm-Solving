@@ -357,4 +357,21 @@ const inAscOrder = arr => arr.slice(0).sort((a, b) => a - b).every((x, i) => x =
 
 // console.log(inAscOrder([1, 2, 4, 7, 19]))
 
+//check three and two
+function checkThreeAndTwo(array) {
+ const obj = array.reduce((o,x) => {
+    o[x] ? o[x]++ : o[x] = 1
+    return o
+  },{})
+  let vals = Object.values(obj)
+  return vals.length === 2 ? vals.some(x => x === 3) : false
+}
+// console.log(checkThreeAndTwo(['a', 'b', 'a', 'a', 'a']))
 
+//descending order
+const descendingOrder = n => Number([...String(n)].sort().reverse().join(''))
+// console.log(descendingOrder(21445))
+
+//sort numbers
+const solution = nums => nums === null ? [] : nums.sort((a, b) => a - b)
+// console.log(solution([1, 2, 10, 50, 5]))
