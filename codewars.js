@@ -450,3 +450,9 @@ function minValue(values) {
 //   3,
 //   1
 // ]))
+
+// CamelCase method
+String.prototype.camelCase = function() {
+  return this.split(' ').map(x => [...x].map((e, i) => i === 0 ? e.toUpperCase() : e).join('')).join('')
+}
+// console.log('test case'.camelCase())
