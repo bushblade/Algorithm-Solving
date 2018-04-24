@@ -123,5 +123,5 @@
 
   //find duplicates
   const arr3 = [1, 1, 2, 3, 4, 1, 2].sort((a, b) => a - b)
-  const newArr = arr3.filter((val, i, array) => i !== array.lastIndexOf(val))
+  const newArr = Array.from(new Set([...arr3.filter((val, i, array) => i !== array.lastIndexOf(val))]))
   console.log(newArr)
