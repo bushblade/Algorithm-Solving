@@ -1,3 +1,4 @@
+/*
 //Duplicate encoder
 
 function duplicateEncode(word) {
@@ -114,7 +115,7 @@ const MORSE_CODE = {
   '..--.-': '_',
   '...---...': 'SOS'
 }
-decodeMorse = function (morseCode) {
+decodeMorse = function(morseCode) {
   return morseCode.split(' ')
     .map(x => MORSE_CODE[x] ? MORSE_CODE[x] : ' ')
     .join('')
@@ -156,7 +157,8 @@ function sortArray(array) {
     if (x % 2 !== 0) {
       count++
       return odd[count]
-    } else {
+    }
+    else {
       return x
     }
   })
@@ -164,7 +166,7 @@ function sortArray(array) {
 // console.log(sortArray([5, 3, 2, 8, 1, 4]))
 
 //bit counting
-var countBits = function (n) {
+var countBits = function(n) {
   return n.toString(2).replace(/0/g, '').length
 }
 // console.log(countBits(1234))
@@ -283,7 +285,7 @@ const remove = s => {
 //Sleigh Authentication
 function Sleigh() {}
 
-Sleigh.prototype.authenticate = function (name, password) {
+Sleigh.prototype.authenticate = function(name, password) {
   return name === 'Santa Claus' && password === "Ho Ho Ho!" ? true : false
 }
 
@@ -359,10 +361,10 @@ const inAscOrder = arr => arr.slice(0).sort((a, b) => a - b).every((x, i) => x =
 
 //check three and two
 function checkThreeAndTwo(array) {
- const obj = array.reduce((o,x) => {
+  const obj = array.reduce((o, x) => {
     o[x] ? o[x]++ : o[x] = 1
     return o
-  },{})
+  }, {})
   let vals = Object.values(obj)
   return vals.length === 2 ? vals.some(x => x === 3) : false
 }
@@ -375,3 +377,76 @@ const descendingOrder = n => Number([...String(n)].sort().reverse().join(''))
 //sort numbers
 const solution = nums => nums === null ? [] : nums.sort((a, b) => a - b)
 // console.log(solution([1, 2, 10, 50, 5]))
+
+//Sum of integers in a string
+const sumOfIntegersInString = s => (s.match(/[0-9]+/g) || []).reduce((s, x) => s + Number(x), 0)
+
+// console.log(sumOfIntegersInString("The Great Depression lasted from 1929 to 1939."))
+
+//Day of the week
+function getDayOfTheWeek(date) {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  return days[new Date(date).getDay()]
+}
+// console.log(getDayOfTheWeek('1/1/2017'))
+
+//Find the stray number
+function stray(numbers) {
+  let obj = numbers.reduce((o, x) => {
+    o[x] ? o[x]++ : o[x] = 1
+    return o
+  }, {})
+  return Number(Object.keys(obj).filter(x => obj[x] === 1)[0])
+}
+// console.log(stray([1, 1, 2, 1, 1, 1, 1, ]))
+
+*/
+
+//Get middle characters or character
+function getMiddle(s) {
+  return s.length % 2 === 0 ? s.substr((s.length / 2) - 1, 2) : s.substr(s.length / 2, 1)
+}
+
+// console.log(getMiddle('test'))
+
+//Death star construction
+function deathStar(week) {
+  let w = week.slice(0, week[7]).reduce((arr, x) => {
+    arr[0] -= x[0]
+    arr[1] -= x[1]
+    arr[2] -= x[2]
+    return arr
+  }, [100, 75, 50]).map(e => e < 0 ? 0 : e)
+  return w.every(v => v === 0) ? 'The station is completed!' :
+    `The station is destroyed! It needed ${w[0]} iron, ${w[1]} steel and ${w[2]} chromium for completion.`
+}
+// console.log(deathStar([
+//   [100, 75, 49],
+//   [20, 15, 20],
+//   [10, 15, 10],
+//   [50, 50, 20],
+//   [20, 15, 10],
+//   [20, 15, 10],
+//   [20, 15, 10], 1
+// ]))
+
+// Row weights
+function rowWeights(array) {
+  return array.reduce((a, x, i) => {
+    i % 2 === 0 ? a[0] += x : a[1] += x
+    return a
+  }, [0, 0])
+}
+// console.log(rowWeights([50, 60, 70, 80]))
+
+// form the minimum
+function minValue(values) {
+  return Number(Array.from(new Set(values))
+    .sort()
+    .reduce((s, x) => s += x, ''))
+}
+// console.log(minValue([
+//   1,
+//   3,
+//   1
+// ]))
