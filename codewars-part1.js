@@ -1,4 +1,3 @@
-/*
 //Duplicate encoder
 
 function duplicateEncode(word) {
@@ -400,7 +399,6 @@ function stray(numbers) {
 }
 // console.log(stray([1, 1, 2, 1, 1, 1, 1, ]))
 
-*/
 
 //Get middle characters or character
 function getMiddle(s) {
@@ -456,3 +454,47 @@ String.prototype.camelCase = function() {
   return this.split(' ').map(x => [...x].map((e, i) => i === 0 ? e.toUpperCase() : e).join('')).join('')
 }
 // console.log('test case'.camelCase())
+
+//odd even
+const oddOrEven = array => array.reduce((n, x) => n += x, 0) % 2 === 0 ? 'even' : 'odd'
+
+// console.log(oddOrEven([2, 5, 34, 6]))
+
+//shortest words
+const findShort = s => Math.min(...s.split(' ').map(x => x.length))
+
+
+// console.log(findShort("bitcoin take over the world maybe who knows perhaps"))
+
+// Hello W... wait what?
+
+const helloWorld = () => {
+  const p = num => num += one,
+    zero = Number(false),
+    one = Number(true),
+    two = p(one),
+    three = p(two),
+    four = p(three),
+    five = p(four),
+    six = p(five),
+    seven = p(six),
+    eight = p(seven),
+    nine = p(eight),
+    arr = [
+      [seven, two],
+      [one, zero, one],
+      [one, zero, eight],
+      [one, zero, eight],
+      [one, one, one],
+      [three, two],
+      [eight, seven],
+      [one, one, one],
+      [one, one, four],
+      [one, zero, eight],
+      [one, zero, zero],
+      [three, three]
+    ]
+  return arr.map(x => String.fromCharCode(x.join(String()))).join(String())
+}
+
+console.log(helloWorld())
