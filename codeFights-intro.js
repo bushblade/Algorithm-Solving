@@ -3,17 +3,17 @@
 function add(param1, param2) {
   return param1 += param2
 }
-console.log(add(1, 2))
+// console.log(add(1, 2))
 
 function centuryFromYear(year) {
   return Math.ceil(year / 100)
 }
-console.log(centuryFromYear(1905))
+// console.log(centuryFromYear(1905))
 
 function checkPalindrome(inputString) {
   return inputString.toLowerCase() === inputString.toLowerCase().split('').reverse().join('')
 }
-console.log(checkPalindrome("aabaa"))
+// console.log(checkPalindrome("aabaa"))
 
 //################### Edge of the ocean ####################
 
@@ -23,11 +23,11 @@ function adjacentElementsProduct(inputArray) {
     return sum
   }, Number.NEGATIVE_INFINITY)
 }
-console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]))
+// console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]))
 
 const shapeArea = n => n * (n - 1) * 2 + 1
 
-console.log(shapeArea(5))
+// console.log(shapeArea(5))
 
 function makeArrayConsecutive2(statues) {
   let sorted = statues.sort((a, b) => a - b)
@@ -37,7 +37,7 @@ function makeArrayConsecutive2(statues) {
   }
   return result.length
 }
-console.log(makeArrayConsecutive2([6, 2, 3, 8]))
+// console.log(makeArrayConsecutive2([6, 2, 3, 8]))
 
 function almostIncreasingSequence(sequence) {
   let count = 0
@@ -47,7 +47,7 @@ function almostIncreasingSequence(sequence) {
   })
   return count <= 1
 }
-console.log(almostIncreasingSequence([1, 3, 2, 1]))
+// console.log(almostIncreasingSequence([1, 3, 2, 1]))
 
 
 function matrixElementsSum(matrix) {
@@ -63,18 +63,18 @@ function matrixElementsSum(matrix) {
   })
   return price
 }
-console.log(matrixElementsSum([
-  [0, 1, 1, 2],
-  [0, 5, 0, 0],
-  [2, 0, 3, 3]
-]))
+// console.log(matrixElementsSum([
+//   [0, 1, 1, 2],
+//   [0, 5, 0, 0],
+//   [2, 0, 3, 3]
+// ]))
 
 //###################### Smooth Sailing ##############################
 
 function allLongestStrings(inputArray) {
   return inputArray.filter(x => x.length === Math.max(...inputArray.map(x => x.length)))
 }
-console.log(allLongestStrings(["aba", "aa", "ad", "vcd", "aba"]))
+// console.log(allLongestStrings(["aba", "aa", "ad", "vcd", "aba"]))
 
 function commonCharacterCount(s1, s2) {
   const match = s1.split('').filter(x => s2.split('').includes(x)),
@@ -94,7 +94,7 @@ function commonCharacterCount(s1, s2) {
   }
   return result
 }
-console.log(commonCharacterCount("aabcc", "adcaa"))
+// console.log(commonCharacterCount("aabcc", "adcaa"))
 
 
 function isLucky(n) {
@@ -108,7 +108,7 @@ function isLucky(n) {
   i += chunkSize
   return chunkedUp[0].reduce((sum, x) => sum += Number(x), 0) === chunkedUp[1].reduce((sum, x) => sum += Number(x), 0)
 }
-console.log(isLucky(1230))
+// console.log(isLucky(1230))
 
 
 function sortByHeight(a) {
@@ -116,7 +116,7 @@ function sortByHeight(a) {
   return a.map(x => x === -1 ? x : sorted.shift())
 }
 
-console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
+// console.log(sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180]))
 
 
 function reverseParentheses(s) {
@@ -132,8 +132,8 @@ function reverseParentheses(s) {
   return s
 }
 
-console.log(reverseParentheses("abc(cba)ab(bac)c"))
-console.log(reverseParentheses("The ((quick (brown) (fox) jumps over the lazy) dog)"))
+// console.log(reverseParentheses("abc(cba)ab(bac)c"))
+// console.log(reverseParentheses("The ((quick (brown) (fox) jumps over the lazy) dog)"))
 
 
 //############ Exploring the Waters ###############################################################################
@@ -145,7 +145,7 @@ function alternatingSums(a) {
   }, [0, 0])
 }
 
-console.log(alternatingSums([50, 60, 60, 45, 70]))
+// console.log(alternatingSums([50, 60, 60, 45, 70]))
 
 
 function addBorder(picture) {
@@ -156,7 +156,7 @@ function addBorder(picture) {
   return picture
 }
 
-console.log(addBorder(["abc", "ded"]))
+// console.log(addBorder(["abc", "ded"]))
 
 function areSimilar(a, b) {
   let ari = a.filter((x, i) => x !== b[i])
@@ -164,7 +164,7 @@ function areSimilar(a, b) {
   return ari.reverse().every((x, i) => x === bri[i]) ? true : false
 }
 
-console.log(areSimilar([1, 2, 3], [1, 2, 3]))
+// console.log(areSimilar([1, 2, 3], [1, 2, 3]))
 
 function arrayChange(inputArray) {
   let count = 0
@@ -177,7 +177,7 @@ function arrayChange(inputArray) {
   }
   return count
 }
-console.log(arrayChange([2, 1, 10, 1]))
+// console.log(arrayChange([2, 1, 10, 1]))
 
 function palindromeRearranging(inputString) {
   let check = [...inputString].reduce((o, x) => {
@@ -190,14 +190,14 @@ function palindromeRearranging(inputString) {
   }
   return count < 2
 }
-console.log(palindromeRearranging("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"))
+// console.log(palindromeRearranging("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaabc"))
 
 //####################### Island of Knowledge ###############################
 
 function areEquallyStrong(yl, yr, fl, fr) {
   return [yl, yr].filter((x) => [fl, fr].includes(x)).length === 2
 }
-console.log(areEquallyStrong(5, 5, 10, 10))
+// console.log(areEquallyStrong(5, 5, 10, 10))
 
 function arrayMaximalAdjacentDifference(inputArray) {
   return inputArray.reduce((a, x, i, arr) => {
@@ -208,23 +208,31 @@ function arrayMaximalAdjacentDifference(inputArray) {
     return a
   }, 0)
 }
-console.log(arrayMaximalAdjacentDifference([2, 4, 1, 0]))
+// console.log(arrayMaximalAdjacentDifference([2, 4, 1, 0]))
 
 function isIPv4Address(inputString) {
   return inputString.split('.').length === 4 ?
     inputString.split('.').filter(x => x !== '' && x >= 0 && x <= 255).length === 4 :
     false
 }
-console.log(isIPv4Address("0..1.0.0"))
+// console.log(isIPv4Address("0..1.0.0"))
 
-// function avoidObstacles(inputArray) {
-//   console.log(inputArray.sort())
-//   return Array(Math.max(...inputArray) + 2)
-//     .fill(0)
-//     .map((x, i) => i)
-//     .reduce((a, x, i) => {
-
-//     }, 0)
-
-// }
-// console.log(avoidObstacles([5, 3, 6, 7, 9]))
+function avoidObstacles(inputArray) {
+  const sorted = inputArray.sort((a, b) => a - b)
+  // const arr = Array(Math.max(...inputArray) + 2).fill(0).map((x, i) => i)
+  console.log(sorted)
+  let result = []
+  let i = 0
+  const chunk = a => {
+    if (a[i += 1] !== (a[i] + 1)) {
+      result.push(a.splice(0, i))
+    }
+    i++
+    if (a.length > 0) chunk(a)
+    console.log(i)
+    console.log(a)
+  }
+  chunk(sorted)
+  return result
+}
+console.log(avoidObstacles([5, 3, 6, 7, 9, 2,12,18]))
