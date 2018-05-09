@@ -1,4 +1,4 @@
-//search a JSON object for partial matches to an input string and return 
+//search a JSON object for partial matches to an input string and return
 //an array of objects that have title of the object which contains the results
 //and any submenu associated with the matching result.
 
@@ -135,28 +135,17 @@ const menuList = {
   ]
 }
 
-//primary object to return in the final array
-const primaryObj = {
-  title: '',
-  results: []
-}
-
-//an object for each result to be pushed to primary objects 'results'
-const resultObj = {
-  title: '',
-  submenu: []
-}
 
 function search(obj, search) {
   let output = []
   for (key in obj) {
-    let primary 
+    let primary
     let searchResult = obj[key].filter(x => x.text.toLowerCase().includes(search))
     if (searchResult.length > 0){
-      primary = Object.create(primaryObj)
+      primary = {}
       primary.title = key
       primary.results = searchResult.reduce((a, x) => {
-        let resObj = Object.create(resultObj)
+        let resObj = {}
         resObj.title = x.text
         resObj.subMenus = x.submenu.reduce((c,b) => {
           c.push(b.text)
