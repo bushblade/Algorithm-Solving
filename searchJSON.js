@@ -139,7 +139,6 @@ const menuList = {
 function search(obj, search) {
   let output = []
   for (key in obj) {
-    let primary
     let searchResult = obj[key].filter(x => x.text.toLowerCase().includes(search))
     if (searchResult.length > 0){
       primary = {}
@@ -161,8 +160,6 @@ function search(obj, search) {
 }
 console.log(search(menuList, 'buch'))
 console.table(search(menuList, 'buch'))
-
-
 
 //origional idea to push to a DOM
 // function search(obj, search){
