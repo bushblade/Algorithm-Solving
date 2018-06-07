@@ -17,7 +17,7 @@ function order(words) {
 
 // console.log(order("is2 Thi1s T4est 3a"))
 
-String.prototype.toAlternatingCase = function() {
+String.prototype.toAlternatingCase = function () {
   return [...this].reduce((str, ltr) => /[a-z]/.test(ltr) ? str += ltr.toUpperCase() : str += ltr.toLowerCase(), '')
 }
 
@@ -39,7 +39,7 @@ function highestRank(arr) {
 
 // console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]))
 
-var countSheep = function(num) {
+var countSheep = function (num) {
   return Array(num).fill().map((x, i) => `${i+1} sheep...`).join('')
 }
 
@@ -76,20 +76,46 @@ function solve(a, b) {
 
 function balancedNum(number) {
   const str = String(number)
-  let [left, right] = [...str].reduce((arr, num, i, a) =>{
+  let [left, right] = [...str].reduce((arr, num, i, a) => {
     if (i < a.length / 2) arr[0].push(num)
     else arr[1].push(num)
     return arr
-  }, [[],[]])
-  if(str.length % 2 ===0){
+  }, [
+    [],
+    []
+  ])
+  if (str.length % 2 === 0) {
     left.pop()
     right.shift()
-  } else{
+  } else {
     left.pop()
   }
-  left = left.reduce((sum, num) => sum += Number(num),0)
-  right = right.reduce((sum, num) => sum += Number(num),0)
+  left = left.reduce((sum, num) => sum += Number(num), 0)
+  right = right.reduce((sum, num) => sum += Number(num), 0)
   return left === right ? "Balanced" : "Not Balanced"
 }
 
 console.log(balancedNum(29559))
+
+function toCamelCase(str) {
+  let words = str.split(/-|_/)
+  for (let i in words) {
+    if (i > 0) words[i] = [...words[i]].map((x, i) => i === 0 ? x.toUpperCase() : x).join('')
+  }
+  return words.join('')
+}
+
+// console.log(toCamelCase("the-stealth-warrior"))
+
+function twoSum(numbers, target) {
+  console.log(numbers, target)
+  for (const i in numbers) {
+    for (const j in numbers) {
+      if (numbers[i] + numbers[j] === target && i !== j) {
+        return [i, j].map(x => Number(x))
+      }
+    }
+  }
+}
+
+console.log(twoSum([ 0, 1, 2, 3 ], 3))
