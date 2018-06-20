@@ -1,6 +1,9 @@
 // run the following code in console on the bellow link
 // http://www.inclusivelondon.com/londonunderground.aspx?tbclr=1
 
+// the code finds the minimum London underground stations that include all 
+// of the letters of the alphabet collectively.
+
 let stations = Array.from(document.querySelectorAll('.hlistLineLink'))
   .map(element => element.textContent.toLowerCase().trim())
 
