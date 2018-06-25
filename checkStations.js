@@ -13,17 +13,16 @@ let finalStations = []
 
 function checkStations() {
   let stationsHash = stations.map(station => {
-    let alphaCount = 0
-    for (let letter of alphabet) {
-      if (station.includes(letter)) alphaCount++
-    }
+    let alphaCount = [...alphabet].reduce((sum, letter) => {
+      if (station.includes(letter)) sum++
+        return sum
+    }, 0)
     return {
       station,
       alphaCount
     }
   }).sort((a, b) => b.alphaCount - a.alphaCount)
-  stations = stations.filter(station => station !== stationsHash[0].station)
-  finalStations.push(stationsHash[0].station)
+  finalStations.push(stations.splice(stations.indexOf(stationsHash[0].station), 1))
   alphabet = alphabet.filter(letter => !stationsHash[0].station.includes(letter))
   if (alphabet.length > 0) checkStations()
   else console.log(finalStations)
