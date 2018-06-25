@@ -212,7 +212,7 @@ function arrayMaximalAdjacentDifference(inputArray) {
 
 function isIPv4Address(inputString) {
   return inputString.split('.').length === 4 ?
-    inputString.split('.').filter(x => x !== '' && x >= 0 && x <= 255).length === 4 :
+    inputString.split('.').every(x => /^\d+$/.test(x) && x >= 0 && x <= 255) :
     false
 }
 // console.log(isIPv4Address("0..1.0.0"))
