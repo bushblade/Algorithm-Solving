@@ -9,10 +9,10 @@ function firstNotRepeatingCharacter(s) {
 
 function firstDuplicate(a) {
   let temp = {}
-  for (let i = 0; i < a.length; i++) {
-    temp[a[i]] ? temp[a[i]]++ : temp[a[i]] = 1
-    if (temp[a[i]] === 2) {
-      return a[i]
+  for (let i of a) {
+    temp[i] ? temp[i]++ : temp[i] = 1
+    if (temp[i] === 2) {
+      return i
     }
   }
   return -1
