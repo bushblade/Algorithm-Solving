@@ -118,4 +118,67 @@ function twoSum(numbers, target) {
   }
 }
 
-console.log(twoSum([ 0, 1, 2, 3 ], 3))
+// console.log(twoSum([ 0, 1, 2, 3 ], 3))
+
+
+function replaceZero(arr) {
+  let longest = 0
+  const longestArrOfOnes = a => a.join('').split('0').sort((c, d) => d.length - c.length).length
+  return arr.reduce((result, val, indx) => {
+    let tempArr = [...arr]
+    if (val === 0) {
+      tempArr[indx] = 1
+      if (longestArrOfOnes(tempArr) >= longest) {
+        longest = longestArrOfOnes(tempArr)
+        result = indx
+      }
+    }
+    return result
+  }, 0)
+}
+
+// console.log(replaceZero([1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1]))
+
+function tickets(peopleInLine) {
+  let pockets = {
+    25: 0,
+    50: 0
+  }
+  for (let person of peopleInLine) {
+    if (person === 25) pockets[25]++
+      else if (person === 50) {
+        pockets[25]--
+        pockets[50]++
+        if (pockets[25] < 0) return 'NO'
+      } else {
+        pockets[25]--
+        if (pockets[50] > 0) pockets[50]--
+        else pockets[25] -= 2
+        if (pockets[25] < 0 || pockets[50] < 0) return 'NO'
+      }
+  }
+  return 'YES'
+}
+
+// console.log(tickets([25, 50, 25, 100, 25, 25, 25, 100, 25, 25, 25, 100, 25, 50, 25, 100, 25, 25, 50, 100, 50, 100]))
+
+weirdReverse = a => a.sort(n => 1)
+
+// console.log(weirdReverse([1, 2, 3, 'a', 'b', 'c', []]))
+
+function predictAge(age1, age2, age3, age4, age5, age6, age7, age8) {
+  return Math.floor(Math.sqrt([...arguments].map(n => n * n).reduce((s, x) => s + x, 0)) / 2)
+}
+
+// console.log(predictAge(65, 60, 75, 55, 60, 63, 64, 45))
+
+function high(x) {
+  const alpha = 'abcdefghijklmnopqrstuvwxyz',
+    wordScore = word => [...word].reduce((s, l) => s + alpha.indexOf(l) + 1, 0),
+    scores = x.split(' ').map(word => wordScore(word)),
+    indxOfBiggest = scores.indexOf(Math.max(...scores))
+  return x.split(' ')[indxOfBiggest]
+}
+
+// console.log(high('man i need a taxi up to ubud'))
+

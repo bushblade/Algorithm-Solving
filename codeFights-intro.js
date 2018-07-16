@@ -40,12 +40,11 @@ function makeArrayConsecutive2(statues) {
 // console.log(makeArrayConsecutive2([6, 2, 3, 8]))
 
 function almostIncreasingSequence(sequence) {
-  let count = 0
-  sequence.forEach((x, i) => {
-    x <= sequence[i - 1] ? count++ : false
-    x <= sequence[i - 2] && sequence[i + 1] <= sequence[i - 1] ? count += 2 : false
-  })
-  return count <= 1
+ return sequence.reduce((a, x, i) => {
+    if(x <= sequence[i - 1]) a++ 
+    if(x <= sequence[i - 2] && sequence[i + 1] <= sequence[i - 1]) a += 2
+    return  a
+  }, 0) <= 1
 }
 // console.log(almostIncreasingSequence([1, 3, 2, 1]))
 
