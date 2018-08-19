@@ -80,10 +80,7 @@ function balancedNum(number) {
     if (i < a.length / 2) arr[0].push(num)
     else arr[1].push(num)
     return arr
-  }, [
-    [],
-    []
-  ])
+  }, [[],[]])
   if (str.length % 2 === 0) {
     left.pop()
     right.shift()
@@ -95,7 +92,7 @@ function balancedNum(number) {
   return left === right ? "Balanced" : "Not Balanced"
 }
 
-console.log(balancedNum(29559))
+// console.log(balancedNum(29559))
 
 function toCamelCase(str) {
   let words = str.split(/-|_/)
@@ -148,12 +145,12 @@ function tickets(peopleInLine) {
     if (person === 25) pockets[25]++
       else if (person === 50) {
         pockets[25]--
-        pockets[50]++
-        if (pockets[25] < 0) return 'NO'
+          pockets[50]++
+          if (pockets[25] < 0) return 'NO'
       } else {
         pockets[25]--
-        if (pockets[50] > 0) pockets[50]--
-        else pockets[25] -= 2
+          if (pockets[50] > 0) pockets[50]--
+            else pockets[25] -= 2
         if (pockets[25] < 0 || pockets[50] < 0) return 'NO'
       }
   }
@@ -182,3 +179,81 @@ function high(x) {
 
 // console.log(high('man i need a taxi up to ubud'))
 
+function countInversions(array) {
+  return array.reduce((sum, n, i, arr) => {
+    arr.slice(i + 1).forEach(x => n > x ? sum++ : 0)
+    return sum
+  }, 0)
+}
+
+// console.log(countInversions([1,3,2,4]))
+
+function reverseVowels(str) {
+  const vowels = 'aeiouAEIOU',
+    vowelsInStr = [...str].filter(l => vowels.includes(l))
+  return [...str].reduce((s, l) => {
+    vowels.includes(l) ? s += vowelsInStr.pop() : s += l
+    return s
+  }, '')
+}
+
+// console.log(reverseVowels("Tomatoes"))
+
+function digits(num) {
+  return [...`${num}`].map(n => Number(n)).reduce((arr, num, indx, or) => {
+    arr.push(...or.filter((x, i) => i > indx).map(a => a + num))
+    return arr
+  }, [])
+}
+
+// console.log(digits(12345))
+
+function highlight(code) {
+  const syntax = charset => {
+    if (/^F+$/g.test(charset)) return `<span style="color: pink">${charset}</span>`
+    else if (/^L+$/g.test(charset)) return `<span style="color: red">${charset}</span>`
+    else if (/^R+$/g.test(charset)) return `<span style="color: green">${charset}</span>`
+    else if (/^\d+$/g.test(charset)) return `<span style="color: orange">${charset}</span>`
+    else return charset
+  }
+  let temp = ''
+  return [...code].reduce((str, char, indx, or) => {
+    temp += char
+    if (/\d/.test(char)) {
+      if (!/\d/.test(or[indx + 1])) {
+        str += syntax(temp)
+        temp = ''
+      }
+    } else if (or[indx + 1] !== char) {
+      str += syntax(temp)
+      temp = ''
+    }
+    return str
+  }, '')
+}
+
+// console.log(highlight('345F'))
+
+function wave(s) {
+  return [...s].map((letter, indx) => [...s].map((l,i) => i === indx ? l.toUpperCase() : l).join(''))
+         .filter((str, j) => /[a-z]/i.test([...s][j]))
+}
+
+// console.log(wave(" Huw   sdoqov "))
+
+function parse(data) {
+  let arr = [],
+    output = 0
+  const p = {
+    i: () => output++,
+    d: () => output--,
+    s: () => output = output * output,
+    o: () => arr.push(output)
+  }
+  data.split('').forEach(l => {
+    if (p[l]) p[l]()
+  })
+  return arr.length >= 1 ? arr : output
+}
+
+// console.log(parse("iiisdoso"))
