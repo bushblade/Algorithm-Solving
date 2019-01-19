@@ -257,3 +257,19 @@ function parse(data) {
 }
 
 // console.log(parse("iiisdoso"))
+
+function unluckyDays(year){
+  return Array(12).fill().filter((x,i) => new Date(year, i, 13).getDay() === 5).length
+}
+
+// console.log(unluckyDays(2015))
+
+function solve(str,k){
+  return [...str].reduce((s, n, i) => {
+    let sub = str.substr(i, str.length - k)
+    if (Number(sub) > s) s = Number(sub)
+    return s
+  }, 0)
+}
+
+console.log(solve('123',1))

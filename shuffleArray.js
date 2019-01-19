@@ -8,20 +8,20 @@ function shuffleArray(array) {
       array[i] = array[j];
       array[j] = temp;
    }
-   console.log(array);
+   return array;
 }
 
-shuffleArray(arrayToShuffle1);
+console.log(shuffleArray(arrayToShuffle1));
 
 //without a loop
 
 const shuffle = arry => {
    arry.forEach((x, i) => {
       let rnd = Math.floor(Math.random() * arry.length),
-         temp = arry[i];
-      arry[i] = arry[rnd];
-      arry[rnd] = temp;
-   });
-   console.log(arry);
+         temp = arry[i]
+      arry[i] = arry[rnd]
+      arry[rnd] = temp
+   })
+  return arry
 }
-shuffle(arrayToShuffle2);
+shuffle(arrayToShuffle2)
