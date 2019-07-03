@@ -2,7 +2,7 @@
 function solution(input, markers) {
   let check = true
   return [...input].reduce((str, x, i, arr) => {
-    if (markers.includes(arr[i += 1])) check = false
+    if (markers.includes(arr[(i += 1)])) check = false
     else if (x === '\n') check = true
     if (check) str += x
     return str
@@ -12,13 +12,21 @@ function solution(input, markers) {
 
 // Your order please
 function order(words) {
-  return words.split(' ').sort((a, b) => a.match(/\d/g) - b.match(/\d/g)).join(' ') || ''
+  return (
+    words
+      .split(' ')
+      .sort((a, b) => a.match(/\d/g) - b.match(/\d/g))
+      .join(' ') || ''
+  )
 }
 
 // console.log(order("is2 Thi1s T4est 3a"))
 
-String.prototype.toAlternatingCase = function () {
-  return [...this].reduce((str, ltr) => /[a-z]/.test(ltr) ? str += ltr.toUpperCase() : str += ltr.toLowerCase(), '')
+String.prototype.toAlternatingCase = function() {
+  return [...this].reduce(
+    (str, ltr) => (/[a-z]/.test(ltr) ? (str += ltr.toUpperCase()) : (str += ltr.toLowerCase())),
+    ''
+  )
 }
 
 // console.log('TesTing'.toAlternatingCase())
@@ -30,28 +38,40 @@ function validatePIN(pin) {
 
 function highestRank(arr) {
   const hash = arr.reduce((obj, n) => {
-    obj[n] ? obj[n]++ : obj[n] = 1
+    obj[n] ? obj[n]++ : (obj[n] = 1)
     return obj
   }, {})
   const most = hash[Object.keys(hash).sort((a, b) => hash[b] - hash[a])[0]]
-  return Number(Object.keys(hash).filter((key) => hash[key] === most).sort((a, b) => b - a)[0])
+  return Number(
+    Object.keys(hash)
+      .filter(key => hash[key] === most)
+      .sort((a, b) => b - a)[0]
+  )
 }
 
 // console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]))
 
-var countSheep = function (num) {
-  return Array(num).fill().map((x, i) => `${i+1} sheep...`).join('')
+var countSheep = function(num) {
+  return Array(num)
+    .fill()
+    .map((x, i) => `${i + 1} sheep...`)
+    .join('')
 }
 
 // console.log(countSheep(3))
 
 function solution(number) {
-  return [...Array(number - 1)].map((x, i) => i + 1).reduce((arr, x) => {
-    if (x % 5 === 0 && x % 3 === 0) arr[2]++
-      if (x % 5 === 0 && x % 3 !== 0) arr[1]++
+  return [...Array(number - 1)]
+    .map((x, i) => i + 1)
+    .reduce(
+      (arr, x) => {
+        if (x % 5 === 0 && x % 3 === 0) arr[2]++
+        if (x % 5 === 0 && x % 3 !== 0) arr[1]++
         if (x % 3 === 0 && x % 5 !== 0) arr[0]++
-          return arr
-  }, [0, 0, 0])
+        return arr
+      },
+      [0, 0, 0]
+    )
 }
 
 // console.log(solution(20))
@@ -61,7 +81,7 @@ function solve(a, b) {
     bob = 0
   a.forEach((x, i) => {
     if (x > b[i]) alice++
-      else if (x < b[i]) bob++
+    else if (x < b[i]) bob++
   })
   if (alice > bob) {
     return `${alice}, ${bob}: Alice made "Kurt" proud!`
@@ -76,20 +96,23 @@ function solve(a, b) {
 
 function balancedNum(number) {
   const str = String(number)
-  let [left, right] = [...str].reduce((arr, num, i, a) => {
-    if (i < a.length / 2) arr[0].push(num)
-    else arr[1].push(num)
-    return arr
-  }, [[],[]])
+  let [left, right] = [...str].reduce(
+    (arr, num, i, a) => {
+      if (i < a.length / 2) arr[0].push(num)
+      else arr[1].push(num)
+      return arr
+    },
+    [[], []]
+  )
   if (str.length % 2 === 0) {
     left.pop()
     right.shift()
   } else {
     left.pop()
   }
-  left = left.reduce((sum, num) => sum += Number(num), 0)
-  right = right.reduce((sum, num) => sum += Number(num), 0)
-  return left === right ? "Balanced" : "Not Balanced"
+  left = left.reduce((sum, num) => (sum += Number(num)), 0)
+  right = right.reduce((sum, num) => (sum += Number(num)), 0)
+  return left === right ? 'Balanced' : 'Not Balanced'
 }
 
 // console.log(balancedNum(29559))
@@ -97,7 +120,7 @@ function balancedNum(number) {
 function toCamelCase(str) {
   let words = str.split(/-|_/)
   for (let i in words) {
-    if (i > 0) words[i] = [...words[i]].map((x, i) => i === 0 ? x.toUpperCase() : x).join('')
+    if (i > 0) words[i] = [...words[i]].map((x, i) => (i === 0 ? x.toUpperCase() : x)).join('')
   }
   return words.join('')
 }
@@ -117,10 +140,13 @@ function twoSum(numbers, target) {
 
 // console.log(twoSum([ 0, 1, 2, 3 ], 3))
 
-
 function replaceZero(arr) {
   let longest = 0
-  const longestArrOfOnes = a => a.join('').split('0').sort((c, d) => d.length - c.length).length
+  const longestArrOfOnes = a =>
+    a
+      .join('')
+      .split('0')
+      .sort((c, d) => d.length - c.length).length
   return arr.reduce((result, val, indx) => {
     let tempArr = [...arr]
     if (val === 0) {
@@ -143,16 +169,16 @@ function tickets(peopleInLine) {
   }
   for (let person of peopleInLine) {
     if (person === 25) pockets[25]++
-      else if (person === 50) {
-        pockets[25]--
-          pockets[50]++
-          if (pockets[25] < 0) return 'NO'
-      } else {
-        pockets[25]--
-          if (pockets[50] > 0) pockets[50]--
-            else pockets[25] -= 2
-        if (pockets[25] < 0 || pockets[50] < 0) return 'NO'
-      }
+    else if (person === 50) {
+      pockets[25]--
+      pockets[50]++
+      if (pockets[25] < 0) return 'NO'
+    } else {
+      pockets[25]--
+      if (pockets[50] > 0) pockets[50]--
+      else pockets[25] -= 2
+      if (pockets[25] < 0 || pockets[50] < 0) return 'NO'
+    }
   }
   return 'YES'
 }
@@ -181,7 +207,7 @@ function high(x) {
 
 function countInversions(array) {
   return array.reduce((sum, n, i, arr) => {
-    arr.slice(i + 1).forEach(x => n > x ? sum++ : 0)
+    arr.slice(i + 1).forEach(x => (n > x ? sum++ : 0))
     return sum
   }, 0)
 }
@@ -192,7 +218,7 @@ function reverseVowels(str) {
   const vowels = 'aeiouAEIOU',
     vowelsInStr = [...str].filter(l => vowels.includes(l))
   return [...str].reduce((s, l) => {
-    vowels.includes(l) ? s += vowelsInStr.pop() : s += l
+    vowels.includes(l) ? (s += vowelsInStr.pop()) : (s += l)
     return s
   }, '')
 }
@@ -200,10 +226,12 @@ function reverseVowels(str) {
 // console.log(reverseVowels("Tomatoes"))
 
 function digits(num) {
-  return [...`${num}`].map(n => Number(n)).reduce((arr, num, indx, or) => {
-    arr.push(...or.filter((x, i) => i > indx).map(a => a + num))
-    return arr
-  }, [])
+  return [...`${num}`]
+    .map(n => Number(n))
+    .reduce((arr, num, indx, or) => {
+      arr.push(...or.filter((x, i) => i > indx).map(a => a + num))
+      return arr
+    }, [])
 }
 
 // console.log(digits(12345))
@@ -235,8 +263,9 @@ function highlight(code) {
 // console.log(highlight('345F'))
 
 function wave(s) {
-  return [...s].map((letter, indx) => [...s].map((l,i) => i === indx ? l.toUpperCase() : l).join(''))
-         .filter((str, j) => /[a-z]/i.test([...s][j]))
+  return [...s]
+    .map((letter, indx) => [...s].map((l, i) => (i === indx ? l.toUpperCase() : l)).join(''))
+    .filter((str, j) => /[a-z]/i.test([...s][j]))
 }
 
 // console.log(wave(" Huw   sdoqov "))
@@ -247,7 +276,7 @@ function parse(data) {
   const p = {
     i: () => output++,
     d: () => output--,
-    s: () => output = output * output,
+    s: () => (output = output * output),
     o: () => arr.push(output)
   }
   data.split('').forEach(l => {
@@ -258,13 +287,15 @@ function parse(data) {
 
 // console.log(parse("iiisdoso"))
 
-function unluckyDays(year){
-  return Array(12).fill().filter((x,i) => new Date(year, i, 13).getDay() === 5).length
+function unluckyDays(year) {
+  return Array(12)
+    .fill()
+    .filter((x, i) => new Date(year, i, 13).getDay() === 5).length
 }
 
 // console.log(unluckyDays(2015))
 
-function solve(str,k){
+function solve(str, k) {
   return [...str].reduce((s, n, i) => {
     let sub = str.substr(i, str.length - k)
     if (Number(sub) > s) s = Number(sub)
@@ -272,4 +303,29 @@ function solve(str,k){
   }, 0)
 }
 
-console.log(solve('123',1))
+// console.log(solve('123',1))
+
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map(w => [...w].reverse().join(''))
+    .join(' ')
+}
+
+// console.log(reverseWords('The quick brown fox jumps over the lazy dog.'))
+
+function timeForMilkAndCookies(date) {
+  const [a, b, c, ...rest] = date.toString().split(' ')
+  return b === 'Dec' && c === '24'
+}
+
+// console.log(timeForMilkAndCookies(new Date(2013, 11, 24)))
+
+function passHash(str) {
+  const crypto = require('crypto')
+  const hash = crypto.createHash('md5')
+  hash.update(str)
+  return hash.digest('hex')
+}
+
+// console.log(passHash('password'))

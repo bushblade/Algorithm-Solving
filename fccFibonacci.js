@@ -1,3 +1,5 @@
+const performance = require('perf_hooks')
+
 // Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
 
 // The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
@@ -18,3 +20,21 @@ function sumFibs(num) {
 }
 
 console.log(sumFibs(4))
+
+// return an array for all numbers in the fibonacci sequence up to n
+const fibGen = (num, arr = [1, 1]) => {
+  const [last, secLast] = [...arr].reverse()
+  return last + secLast > num ? arr : fibGen(num, [...arr, last + secLast])
+}
+
+console.log(fibGen(29))
+
+const functionWithPeformanceTest = fn => (...args) => {
+  const start = performance.now()
+  fn(...args)
+  return `Function completed in ${performance.now() - start} milliseconds`
+}
+
+const fibGenWithPerformance = functionWithPeformanceTest(fibGen)
+
+fibGenWithPerformance(Math.pow(10, 10))
