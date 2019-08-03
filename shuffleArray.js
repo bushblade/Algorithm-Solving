@@ -28,10 +28,10 @@ function shuffleArray(array) {
 
 const shuffle = arry =>
   arry.reduce(
-    (acc, _, i) => {
+    (acc, x) => {
       const rnd = Math.floor(Math.random() * acc.length),
-        temp = acc[i]
-      acc[i] = acc[rnd]
+        temp = x
+      x = acc[rnd]
       acc[rnd] = temp
       return acc
     },
