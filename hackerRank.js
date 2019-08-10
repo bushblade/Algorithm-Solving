@@ -51,7 +51,33 @@ const miniMaxSum = arr => {
   console.log(min, max)
 }
 
-miniMaxSum([1, 2, 3, 4, 5])
+// miniMaxSum([1, 2, 3, 4, 5])
 
 const birthdayCakeCandles = ar =>
   [...ar].sort((a, b) => b - a).filter((x, i, a) => x === a[0]).length
+
+const timeConversion = s => {
+  let [hrs, mins, secs] = s.split(':')
+
+  const isAM = secs.includes('AM')
+  const is12 = hrs === '12'
+  hrs = is12 && isAM ? '00' : is12 ? '12' : isAM ? hrs : Number(hrs) + 12
+
+  return `${hrs}:${mins}:${secs.replace(/\D/g, '')}`
+}
+
+// console.log(timeConversion(`06:40:03AM`))
+
+const circularPalindromes = s => {
+  const isPalindrome = s => s === [...s].reverse().join('')
+
+  const longestPalindrome = (s, length = s.length) =>
+    isPalindrome(s) ? length : longestPalindrome(s.slice(1), --length)
+
+  const iterate = (i = 0, str = s) => {
+    console.log(isPalindrome(str))
+    if (i < str.length) return iterate(++i, `${str.slice(1)}${str[0]}`)
+  }
+}
+
+console.log(circularPalindromes('cacbbba'))
