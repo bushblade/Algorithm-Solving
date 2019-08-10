@@ -25,4 +25,33 @@ const closestNumbers = numbers => {
   })
 }
 
-closestNumbers([4, 4, 2, 1, 3])
+// closestNumbers([6, 2, 4, 10])
+
+const staircase = n => {
+  const createStr = (hashLength, str = '') =>
+    str.length < n ? createStr(hashLength, (str += str.length < hashLength ? ' ' : '#')) : str
+  const print = i => {
+    if (i > 0) {
+      console.log(createStr(n - (n - i) - 1))
+      return print(--i)
+    }
+  }
+  return print(n)
+}
+
+// staircase(6)
+
+const miniMaxSum = arr => {
+  const sorted = [...arr].sort((a, b) => a - b)
+  const min = sorted.slice(0, 4).reduce((a, n) => a + n)
+  const max = sorted
+    .reverse()
+    .slice(0, 4)
+    .reduce((a, n) => a + n)
+  console.log(min, max)
+}
+
+miniMaxSum([1, 2, 3, 4, 5])
+
+const birthdayCakeCandles = ar =>
+  [...ar].sort((a, b) => b - a).filter((x, i, a) => x === a[0]).length
