@@ -70,14 +70,32 @@ const timeConversion = s => {
 
 const circularPalindromes = s => {
   const isPalindrome = s => s === [...s].reverse().join('')
-
-  const longestPalindrome = (s, length = s.length) =>
-    isPalindrome(s) ? length : longestPalindrome(s.slice(1), --length)
-
-  const iterate = (i = 0, str = s) => {
-    console.log(isPalindrome(str))
-    if (i < str.length) return iterate(++i, `${str.slice(1)}${str[0]}`)
+  // TODO: failing on call stack
+  const checkSubstr = (
+    str,
+    checksToRun = 1,
+    lengthToCheck = s.length,
+    start = 0,
+    numberOfChecksRun = 1
+  ) => {
+    const toCheck = str.substr(start, lengthToCheck)
+    return isPalindrome(toCheck)
+      ? toCheck.length
+      : numberOfChecksRun < checksToRun
+      ? checkSubstr(str, checksToRun, lengthToCheck, ++start, ++numberOfChecksRun)
+      : checkSubstr(str, ++checksToRun, --lengthToCheck, 0, 1)
   }
+
+  const rotateString = (i = 0, str = s, arr = []) => {
+    arr = [...arr, checkSubstr(str)]
+    if (i < str.length - 1) return rotateString(++i, `${str.slice(1)}${str[0]}`, arr)
+    return arr
+  }
+  return rotateString()
 }
 
-console.log(circularPalindromes('cacbbba'))
+console.log(
+  circularPalindromes(
+    'baababaababaabaaaabaabbbabaababaaaaaabaaabbaaababbaabaaaaaabbbabbabbbabababaababbbaaabaaabbabababbbbbbbaabbababbbababababbaabbbaababbbbaaaaabaa'
+  )
+)
