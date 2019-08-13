@@ -29,4 +29,10 @@ const validBrackets = str => {
   return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
 }
 
-console.log(validBrackets('([{}])()'))
+// console.log(validBrackets('([{}])()'))
+
+// Given a sorted array, A, with possibly duplicated elements, find the indices of the first and last occurrences of a target element, x. Return -1 if the target is not found
+
+const firstAndLast = (arr, target) => [arr.indexOf(target), arr.lastIndexOf(target)]
+
+console.log(firstAndLast([1, 3, 3, 5, 7, 8, 9, 9, 9, 15], 9))
