@@ -14,4 +14,11 @@ const addLinkedLists = (list1, list2) => {
     .reverse()
 }
 
-console.log(addLinkedLists([2, 4, 3], [5, 6, 4]))
+// console.log(addLinkedLists([2, 4, 3], [5, 6, 4]))
+
+const validBrackets = str => {
+  if (str.length % 2 !== 0) return false
+  return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
+}
+
+console.log(validBrackets('([{}])()'))
