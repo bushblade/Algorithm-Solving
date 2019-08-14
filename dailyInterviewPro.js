@@ -35,4 +35,23 @@ const validBrackets = str => {
 
 const firstAndLast = (arr, target) => [arr.indexOf(target), arr.lastIndexOf(target)]
 
-console.log(firstAndLast([1, 3, 3, 5, 7, 8, 9, 9, 9, 15], 9))
+console.log(firstAndLast([1, 2, 3, 4, 5, 6, 10], 9))
+
+// recursive reverse array
+
+const recReverse = ([first, ...rest], result = []) => {
+  result.unshift(first)
+  return rest.length === 0 ? result : recReverse(rest, result)
+}
+
+console.log(recReverse([1, 2, 3, 4, 5, 6]))
+
+const loopReverse = arr => {
+  const result = []
+  for (let i = arr.length - 1; i >= 0; i--) {
+    result.push(arr[i])
+  }
+  return result
+}
+
+console.log(loopReverse([1, 2, 3, 4, 5, 6]))
