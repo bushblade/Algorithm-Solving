@@ -54,4 +54,14 @@ const loopReverse = arr => {
   return result
 }
 
-console.log(loopReverse([1, 2, 3, 4, 5, 6]))
+// console.log(loopReverse([1, 2, 3, 4, 5, 6]))
+
+// You are given an array of integers in an arbitrary order. Return whether or not it is possible to make the array non-decreasing by modifying at most 1 element to any value.
+
+const checkPossibility = ([head, ...tail], count = 0) => {
+  if (count > 1) return false
+  if (!tail[0]) return true
+  return head > tail[0] ? checkPossibility(tail, count + 1) : checkPossibility(tail, count)
+}
+
+console.log(checkPossibility([13, 4, 7]))
