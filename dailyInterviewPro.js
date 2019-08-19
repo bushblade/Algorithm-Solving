@@ -6,12 +6,12 @@
 // Explanation: 342 + 465 = 807.
 
 const addLinkedLists = (list1, list2) => {
-  const numberify = list => Number(list.reverse().join(''))
-  const result = numberify(list1) + numberify(list2)
-  return `${result}`
-    .split('')
-    .map(s => Number(s))
-    .reverse()
+    const numberify = list => Number(list.reverse().join(''))
+    const result = numberify(list1) + numberify(list2)
+    return `${result}`
+        .split('')
+        .map(s => Number(s))
+        .reverse()
 }
 
 // console.log(addLinkedLists([2, 4, 3], [5, 6, 4]))
@@ -25,8 +25,8 @@ const addLinkedLists = (list1, list2) => {
 // - Note that an empty string is also considered valid.
 
 const validBrackets = str => {
-  if (str.length % 2 !== 0) return false
-  return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
+    if (str.length % 2 !== 0) return false
+    return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
 }
 
 // console.log(validBrackets('([{}])()'))
@@ -35,23 +35,23 @@ const validBrackets = str => {
 
 const firstAndLast = (arr, target) => [arr.indexOf(target), arr.lastIndexOf(target)]
 
-console.log(firstAndLast([1, 2, 3, 4, 5, 6, 10], 9))
+// console.log(firstAndLast([1, 2, 3, 4, 5, 6, 10], 9))
 
 // recursive reverse array
 
 const recReverse = ([first, ...rest], result = []) => {
-  result.unshift(first)
-  return rest.length === 0 ? result : recReverse(rest, result)
+    result.unshift(first)
+    return rest.length === 0 ? result : recReverse(rest, result)
 }
 
-console.log(recReverse([1, 2, 3, 4, 5, 6]))
+// console.log(recReverse([1, 2, 3, 4, 5, 6]))
 
 const loopReverse = arr => {
-  const result = []
-  for (let i = arr.length - 1; i >= 0; i--) {
-    result.push(arr[i])
-  }
-  return result
+    const result = []
+    for (let i = arr.length - 1; i >= 0; i--) {
+        result.push(arr[i])
+    }
+    return result
 }
 
 // console.log(loopReverse([1, 2, 3, 4, 5, 6]))
@@ -65,8 +65,8 @@ const loopReverse = arr => {
 // }
 
 const checkPossibility = arr => {
-  const isNonDecreasing = a => a.every((n, i) => n >= a[i - 1])
-  return isNonDecreasing(arr)
+    const isNonDecreasing = a => a.every((n, i) => n >= a[i - 1])
+    return isNonDecreasing(arr)
 }
 
 console.log(checkPossibility([2, 3, 3, 2, 4]))
