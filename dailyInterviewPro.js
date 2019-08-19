@@ -66,6 +66,14 @@ const loopReverse = arr => {
 
 const checkPossibility = arr => {
     const isNonDecreasing = a => a.every((n, i) => n >= a[i - 1])
+    let count = 0
+    let i = 0
+    for (let n of arr) {
+        const next = arr[i + 1]
+        if (count > 1) return false
+
+
+    }
     return isNonDecreasing(arr)
 }
 
