@@ -66,8 +66,7 @@ const checkPossibility = arr => {
   if (index === -1) return true
   const increaseCurrent = arr.map((n, i) => (i === index ? arr[i + 1] : n))
   const decreaseNext = arr.map((n, i) => (i === index + 1 ? arr[i - 1] : n))
-  if (!(isNonDecreasing(increaseCurrent) || isNonDecreasing(decreaseNext))) return false
-  return true
+  return isNonDecreasing(increaseCurrent) || isNonDecreasing(decreaseNext) ? true : false
 }
 
 console.log(checkPossibility([4, 5, 2, 3]))
