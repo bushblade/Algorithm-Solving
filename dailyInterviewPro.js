@@ -6,12 +6,12 @@
 // Explanation: 342 + 465 = 807.
 
 const addLinkedLists = (list1, list2) => {
-    const numberify = list => Number(list.reverse().join(''))
-    const result = numberify(list1) + numberify(list2)
-    return `${result}`
-        .split('')
-        .map(s => Number(s))
-        .reverse()
+  const numberify = list => Number(list.reverse().join(''))
+  const result = numberify(list1) + numberify(list2)
+  return `${result}`
+    .split('')
+    .map(s => Number(s))
+    .reverse()
 }
 
 // console.log(addLinkedLists([2, 4, 3], [5, 6, 4]))
@@ -25,8 +25,8 @@ const addLinkedLists = (list1, list2) => {
 // - Note that an empty string is also considered valid.
 
 const validBrackets = str => {
-    if (str.length % 2 !== 0) return false
-    return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
+  if (str.length % 2 !== 0) return false
+  return str.length === 0 ? true : validBrackets(str.replace(/(\(\))|(\[\])|(\{\})/gi, ''))
 }
 
 // console.log(validBrackets('([{}])()'))
@@ -40,41 +40,34 @@ const firstAndLast = (arr, target) => [arr.indexOf(target), arr.lastIndexOf(targ
 // recursive reverse array
 
 const recReverse = ([first, ...rest], result = []) => {
-    result.unshift(first)
-    return rest.length === 0 ? result : recReverse(rest, result)
+  result.unshift(first)
+  return rest.length === 0 ? result : recReverse(rest, result)
 }
 
 // console.log(recReverse([1, 2, 3, 4, 5, 6]))
 
 const loopReverse = arr => {
-    const result = []
-    for (let i = arr.length - 1; i >= 0; i--) {
-        result.push(arr[i])
-    }
-    return result
+  const result = []
+  for (let i = arr.length - 1; i >= 0; i--) {
+    result.push(arr[i])
+  }
+  return result
 }
 
 // console.log(loopReverse([1, 2, 3, 4, 5, 6]))
 
 // You are given an array of integers in an arbitrary order. Return whether or not it is possible to make the array non-decreasing by modifying at most 1 element to any value.
 
-// const checkPossibility = ([head, ...tail], count = 0) => {
-//   if (count > 1) return false
-//   if (!tail[0]) return true
-//   return head > tail[0] ? checkPossibility(tail, count + 1) : checkPossibility(tail, count)
-// }
-
+// Runtime: 52 ms, faster than 99.27% of JavaScript online submissions for Non-decreasing Array.
+// Memory Usage: 37.3 MB, less than 50.00% of JavaScript online submissions for Non-decreasing Array.
 const checkPossibility = arr => {
-    const isNonDecreasing = a => a.every((n, i) => n >= a[i - 1])
-    let count = 0
-    let i = 0
-    for (let n of arr) {
-        const next = arr[i + 1]
-        if (count > 1) return false
-
-
-    }
-    return isNonDecreasing(arr)
+  const isNonDecreasing = a => a.every((n, i) => n >= a[i - 1] || i === 0)
+  const index = arr.findIndex((n, i) => n > arr[i + 1])
+  if (index === -1) return true
+  const increaseCurrent = arr.map((n, i) => (i === index ? arr[i + 1] : n))
+  const decreaseNext = arr.map((n, i) => (i === index + 1 ? arr[i - 1] : n))
+  if (!(isNonDecreasing(increaseCurrent) || isNonDecreasing(decreaseNext))) return false
+  return true
 }
 
-console.log(checkPossibility([2, 3, 3, 2, 4]))
+console.log(checkPossibility([4, 5, 2, 3]))
