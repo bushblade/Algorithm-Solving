@@ -76,7 +76,7 @@ function solution(number) {
 
 // console.log(solution(20))
 
-function solve(a, b) {
+function solveIt(a, b) {
   let alice = 0,
     bob = 0
   a.forEach((x, i) => {
@@ -295,13 +295,13 @@ function unluckyDays(year) {
 
 // console.log(unluckyDays(2015))
 
-function solve(str, k) {
-  return [...str].reduce((s, n, i) => {
-    let sub = str.substr(i, str.length - k)
-    if (Number(sub) > s) s = Number(sub)
-    return s
-  }, 0)
-}
+// function solve(str, k) {
+//   return [...str].reduce((s, n, i) => {
+//     let sub = str.substr(i, str.length - k)
+//     if (Number(sub) > s) s = Number(sub)
+//     return s
+//   }, 0)
+// }
 
 // console.log(solve('123',1))
 
@@ -329,3 +329,140 @@ function passHash(str) {
 }
 
 // console.log(passHash('password'))
+
+const sumCubes = (n, total = 0) => {
+  const cubed = n * n * n
+  return n === 1 ? total + 1 : sumCubes(--n, total + cubed)
+}
+
+// console.log(sumCubes(2))
+
+function numPrimorial(n) {
+  let prime = 2
+  const isPrime = (n, x = 2) => (x === n ? true : n % x !== 0 ? isPrime(n, ++x) : false)
+  const getNext = n => (isPrime(n) ? n : getNext(n + 1))
+  const primes = Array(n)
+    .fill()
+    .map((n, i) => {
+      if (i === 0) return prime
+      else {
+        prime = getNext(++prime)
+        return prime
+      }
+    })
+  return primes.reduce((acc, p) => acc * p)
+}
+
+// console.log(numPrimorial(3))
+
+// const solve = s => {
+//   const alphaValues = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+//     .split('')
+//     .reduce((obj, l, i) => ({ ...obj, [l]: i + 1 }), {})
+//   return s.split('').reduce((perm, l) => {
+//     const difference = 27 - alphaValues[l]
+//     return perm * difference
+//   }, 1)
+// }
+
+// console.log(solve('XYZ'))
+
+function addLetters(...letters) {
+  if (!letters.length) return 'z'
+  const alphabet = [...'abcdefghijklmnopqrstuvwxyz']
+
+  const indexOfAdded =
+    letters.reduce((a, b) => {
+      const calc = a + alphabet.indexOf(b) + 1
+      return calc > 26 ? calc - 26 : calc
+    }, 0) - 1
+
+  return alphabet[indexOfAdded]
+}
+
+// console.log(addLetters('a', 'n', 'n'))
+
+const solve = s => {
+  const vowels = 'aeiou'
+  const vowelsArr = []
+  let str = ''
+  for (const letter of s) {
+    if (vowels.includes(letter)) {
+      str += letter
+    } else {
+      vowelsArr.push(str)
+      str = ''
+    }
+  }
+  return vowelsArr.sort((a, b) => b.length - a.length)[0].length
+}
+
+// console.log(solve('codewarriors'))
+
+const removeDuplicateWords = s => [...new Set(s.split(' '))].join(' ')
+
+// console.log(removeDuplicateWords('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
+
+const oddOnesOut = people =>
+  people.filter(person => people.filter(p => p === person).length % 2 === 0)
+
+// console.log(oddOnesOut([1, 2, 3, 1, 3, 3]))
+
+function password(str) {
+  if (str.length < 8) return false
+  const hasUppercase = /[A-Z]/.test(str),
+    hasNumbers = /[0-9]/.test(str),
+    hasLowerCase = /[a-z]/.test(str)
+  return hasUppercase && hasNumbers && hasLowerCase
+}
+
+// console.log(password('Abcd1234'))
+
+function evaporator(content, evap_per_day, threshold) {
+  const thresholdVolume = (content / 100) * threshold
+  // let day = 0
+  const calcDay = (c = content, day = 0) =>
+    c <= thresholdVolume ? day : calcDay(c - (c / 100) * evap_per_day, ++day)
+  // while (content > thresholdVolume) {
+  //   day++
+  //   content = content - (content / 100) * evap_per_day
+  // }
+  // return day
+  return calcDay()
+}
+
+// console.log(evaporator(10, 10, 10))
+
+function* range(start = 0, end = 10, step = 1) {
+  let current = start - step
+  while (current < end) {
+    current += step
+    yield current
+  }
+}
+
+function* oddNumberGenerator() {
+  let n = -1
+  while (true) {
+    n += 2
+    yield n
+  }
+}
+
+function rowSumOddNumbers(n) {
+  let triangle = []
+  const oddNumbers = oddNumberGenerator()
+  let row = 0
+  while (row < n) {
+    row++
+    const arr = Array(row)
+      .fill()
+      .map(() => oddNumbers.next().value)
+    triangle.push(arr)
+  }
+  return triangle[triangle.length - 1].reduce((a, b) => a + b)
+}
+
+console.log(rowSumOddNumbers(42))
+
+console.log(42 ** 3)
