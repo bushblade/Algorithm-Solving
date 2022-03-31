@@ -234,4 +234,226 @@ function findMissingLetter(array) {
   return check(array)
 }
 
-console.log(findMissingLetter(['b', 'c', 'd', 'f']))
+// console.log(findMissingLetter(['b', 'c', 'd', 'f']))
+
+const oldLadySwallows = animals => {
+  const predator = {
+    fly: 'spider',
+    spider: 'bird',
+    bird: 'cat',
+    cat: 'dog',
+    dog: 'goat',
+    goat: 'cow',
+    cow: 'horse'
+  }
+
+  let result = []
+
+  for (let animal of animals) {
+    result.push(animal)
+    result = result.filter(prey => !predator[prey] || !result.includes(predator[prey]))
+    if (animal === 'horse') break
+  }
+
+  return result
+}
+
+// console.log(oldLadySwallows(['bird', 'cow', 'cow', 'horse', 'bird', 'cat', 'cow']))
+
+function* yearGen(thirdYear) {
+  let count = 0
+  while (true) {
+    count++
+    if (count < 2) yield 15
+    else if (count < 3) yield 9
+    else yield thirdYear
+  }
+}
+
+const ownedCatAndDog = (catYears, dogYears) => {
+  const calcAge = (years, generator, age = 0) => {
+    const current = generator.next().value
+    return years >= current ? calcAge(years - current, generator, ++age) : age
+  }
+  return [calcAge(catYears, yearGen(4)), calcAge(dogYears, yearGen(5))]
+}
+
+// console.log(ownedCatAndDog(56, 64))
+
+const solution = (number, total = 0) => {
+  --number
+  if (number % 3 === 0 || number % 5 === 0) total += number
+  return number <= 0 ? total : solution(number, total)
+}
+// console.log(solution(10))
+
+const isIncreasing = strNum =>
+  [...strNum].every((sn, i, oa) => (i === 0 ? true : Number(sn) >= Number(oa[i - 1])))
+
+const addsToN = (strNum, n) => [...strNum].reduce((acc, sn) => acc + Number(sn), 0) === n
+
+const checkNumber = (strNum, n) => {
+  if (!addsToN(strNum, n)) return false
+  else return isIncreasing(strNum)
+}
+
+function generateNumbers(start, end, sum) {
+  let current = start
+  let result = []
+  while (current > end) {
+    let str = current + ''
+    if (checkNumber(str, sum)) result.push(str)
+    current--
+  }
+  return result
+}
+
+function findAll(n, k) {
+  const biggestN = Array(k)
+    .fill(Math.ceil(n / k))
+    .join('')
+
+  const smallestN = Array(k)
+    .fill(1)
+    .join('')
+
+  const sequence = generateNumbers(biggestN, smallestN, n)
+
+  return sequence.length ? [sequence.length, sequence[sequence.length - 1], sequence[0]] : []
+}
+
+// console.log(findAll(39, 9))
+
+const josephus = (items, k) => {
+  let result = [],
+    index = 0
+  while (items.length > 0) {
+    index = (index + k - 1) % items.length
+    result = [...result, ...items.splice(index, 1)]
+  }
+  return result
+}
+
+// console.log(josephus([1, 2, 3, 4, 5, 6, 7], 3))
+
+const letterFrequency = text =>
+  Object.entries(
+    [...text.toLowerCase().replace(/\W/g, '')].reduce((acc, c) => {
+      acc[c] ? acc[c]++ : (acc[c] = 1)
+      return acc
+    }, {})
+  )
+    .sort((a, b) => b[1] - a[1])
+    .sort((a, b) => {
+      if (a[1] === b[1]) {
+        return a[0] < b[0] ? -1 : 0
+      } else return 0
+    })
+
+// console.log(letterFrequency('wklv lv d vhfuhw phvvdjh'))
+
+class Magic extends Number {
+  constructor(number = 0) {
+    super(number)
+    this.value = number
+    this.canGetValue = false
+  }
+  valueOf() {
+    return this.value
+  }
+  setupValue(num) {
+    if (!this.value || !this.canGetValue) {
+      this.value = num
+      this.operation = function(x) {
+        return x
+      }
+    } else {
+      this.operation(num)
+      this.canGetValue = false
+    }
+  }
+  // Value getters
+  get zero() {
+    this.setupValue(0)
+    return this
+  }
+  get one() {
+    this.setupValue(1)
+    return this
+  }
+  get two() {
+    this.setupValue(2)
+    return this
+  }
+  get three() {
+    this.setupValue(3)
+    return this
+  }
+  get four() {
+    this.setupValue(4)
+    return this
+  }
+  get five() {
+    this.setupValue(5)
+    return this
+  }
+  get six() {
+    this.setupValue(6)
+    return this
+  }
+  get seven() {
+    this.setupValue(7)
+    return this
+  }
+  get eight() {
+    this.setupValue(8)
+    return this
+  }
+  get nine() {
+    this.setupValue(9)
+    return this
+  }
+  get ten() {
+    this.setupValue(10)
+    return this
+  }
+  // Operation getters
+  get plus() {
+    this.operation = function(val) {
+      this.value = this.value + val
+    }
+    this.canGetValue = true
+    return this
+  }
+  get times() {
+    this.operation = function(val) {
+      this.value = this.value * val
+    }
+    this.canGetValue = true
+    return this
+  }
+  get divideBy() {
+    this.operation = function(val) {
+      this.value = this.value / val
+    }
+    this.canGetValue = true
+    return this
+  }
+  get minus() {
+    this.operation = function(val) {
+      this.value = this.value - val
+    }
+    this.canGetValue = true
+    return this
+  }
+}
+
+const FluentCalculator = new Magic()
+
+console.log(FluentCalculator.eight - 0)
+console.log(FluentCalculator.two - 0)
+console.log(FluentCalculator.one - 0)
+console.log(FluentCalculator.five - 0)
+
+console.log(FluentCalculator.one.plus.five.times.ten - 0)
+console.log(FluentCalculator.one.plus.five.times.five - 0)
